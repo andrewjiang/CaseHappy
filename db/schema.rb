@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409024854) do
+ActiveRecord::Schema.define(version: 20140409032131) do
 
   create_table "orders", force: true do |t|
     t.string   "user"
     t.integer  "quantity"
-    t.string   "canvas"
+    t.text     "canvas",     limit: 255
     t.string   "model"
     t.datetime "created_at"
     t.datetime "updated_at"
