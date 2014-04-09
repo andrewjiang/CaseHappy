@@ -80,7 +80,7 @@
 					    <label for="order-color">Model</label>
 					  </div>
 					  <div class="col-sm-8">
-					    <label for="order-color"><%= @model %></label>
+					    <label for="order-color"><%= @order.model %></label>
 					  </div>
 					  <div class="col-xs-8 col-sm-offset-4">
 						  <div class="checkbox">
@@ -290,10 +290,6 @@
 <div class="hidden">
 	<%= form_for(@order) do |f| %>
 
-		<div class="field">
-	    <%= f.label :user %><br>
-	    <%= f.text_field :user, :value => "guest" %>
-	  </div>
 	  <div class="field">
 	    <%= f.label :quantity %><br>
 	    <%= f.number_field :quantity %>
@@ -309,10 +305,6 @@
 	  <div class="field">
 	    <%= f.label :startW %><br>
 	    <%= f.text_field :startW %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :model %><br>
-	    <%= f.text_field :model %>
 	  </div>
 	  <div class="actions">
 	    <%= f.submit %>

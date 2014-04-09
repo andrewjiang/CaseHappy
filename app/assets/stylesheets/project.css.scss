@@ -422,12 +422,14 @@ a:hover{
 	.resize-icon{
 		position: absolute;
 		border: 1px solid #000;
+		border-radius: 4px;
 		font-size: 10px;
-		height: 14px;
-		width: 14px;
+		height: 18px;
+		width: 18px;
 		text-align: center;
 		background-color: #000;
 		color: #fff;
+		padding: 2px;
 	}
 	.resize-icon .glyphicon{
 		top: 0;

@@ -46,21 +46,21 @@
 				</button>
 			</div>
 			<div class="hidden" id="object-box">
-				<div class="resize-icon" id="resize-TL-icon">
+				<button class="resize-icon" id="resize-TL-icon">
 					<span class="glyphicon glyphicon-resize-full"></span>
-				</div>
-				<div class="resize-icon" id="resize-TR-icon">
+				</button>
+				<button class="resize-icon" id="resize-TR-icon">
 					<span class="glyphicon glyphicon-resize-full"></span>
-				</div>
-				<div class="resize-icon" id="resize-BL-icon">
+				</button>
+				<button class="resize-icon" id="resize-BL-icon">
 					<span class="glyphicon glyphicon-resize-full"></span>
-				</div>
-				<div class="resize-icon" id="resize-BR-icon">
+				</button>
+				<button class="resize-icon" id="resize-BR-icon">
 					<span class="glyphicon glyphicon-resize-full"></span>
-				</div>
-				<div class="resize-icon" id="rotate-icon">
+				</button>
+				<button class="resize-icon" id="rotate-icon">
 					<span class="glyphicon glyphicon-repeat"></span>
-				</div>
+				</button>
 			</div>
 
 			<div class="command-box hidden-on-mobile" id="order-box">
@@ -293,7 +293,11 @@
 
 		<div class="field">
 	    <%= f.label :user %><br>
-	    <%= f.text_field :user, :value => "guest" %>
+	    <% if user_signed_in? %>
+        <%= f.text_field :user, :value => current_user.email %>
+      <% else %>
+        <%= f.text_field :user, :value => "guest" %>
+      <% end %> 
 	  </div>
 	  <div class="field">
 	    <%= f.label :quantity %><br>

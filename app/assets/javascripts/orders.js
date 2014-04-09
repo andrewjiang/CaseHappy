@@ -205,8 +205,7 @@ $(document).ready(function(){
 	});
 
 	// Set initial price
-	setPrice(1);
-
+	$('#order-quantity').val(1);
 	/*var phoneCase = new fabric.Rect({
 	  originY: "top",
 	  originX: "center",
@@ -478,18 +477,14 @@ $(document).ready(function(){
 	$('#order-checkout').click(function(event){
 		$('#order_canvas').val(JSON.stringify(canvas));
 		$('#order_startW').val(oriContWidth);
-		$("#new_order").submit();
+		$("form:first").submit();
 	});
 
 	if ($('#order_canvas').val()){
 		console.log('loading from canvas');
 		canvas.loadFromJSON($('#order_canvas').val());
-
-
-		console.log(canvas.item(0).left);
-		console.log("----");
-		console.log(canvas.getWidth());
-		console.log($('#order_offset').val());
+    $('#order-quantity').val($('#order_quantity').val());
+    setPrice($('#order_quantity').val());
 
 		canvas.renderAll();
 
@@ -538,7 +533,7 @@ setTimeout(function(){
 	};
 
 	canvas.renderAll();
-}, 500);
+}, 1000);
 
 /*
 
