@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @order.user %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @order.quantity %>
+</p>
+
+<p>
+  <strong>Canvas:</strong>
+  <%= @order.canvas %>
+</p>
+
+<p>
+  <strong>Offset:</strong>
+  <%= @order.offset %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @order.model %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>
