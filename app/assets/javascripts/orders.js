@@ -479,6 +479,7 @@ $(document).ready(function(){
 	$('#order-checkout').click(function(event){
 		$('#order_canvas').val(JSON.stringify(canvas));
 		$('#order_startW').val(oriContWidth);
+		alert("test");
 		$("#new_order").submit();
 	});
 
