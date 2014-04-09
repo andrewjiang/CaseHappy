@@ -253,7 +253,6 @@ $(document).ready(function(){
 			stateProperties: 'top left width height scaleX scaleY flipX flipY originX originY transformMatrix stroke strokeWidth strokeDashArray strokeLineCap strokeLineJoin strokeMiterLimit angle opacity fill fillRule shadow clipTo visible backgroundColor lockUniScaling hasBorders hasCorners transparentCorners borderColor cornerColor cornerSize'.split(' ')
 		});
 
-		alert('top left width height scaleX scaleY flipX flipY originX originY transformMatrix stroke strokeWidth strokeDashArray strokeLineCap strokeLineJoin strokeMiterLimit angle opacity fill fillRule shadow clipTo visible backgroundColor lockUniScaling hasBorders hasCorners transparentCorners borderColor cornerColor cornerSize'.split(' '));
 		canvas.add(text);
 		canvas.setActiveObject(text);
 		showEditor();
@@ -479,7 +478,6 @@ $(document).ready(function(){
 	$('#order-checkout').click(function(event){
 		$('#order_canvas').val(JSON.stringify(canvas));
 		$('#order_startW').val(oriContWidth);
-		alert("test");
 		$("#new_order").submit();
 	});
 
