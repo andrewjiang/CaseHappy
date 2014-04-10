@@ -91,7 +91,7 @@
 					    <label for="order-color">Total</label>
 					  </div>
 					  <div class="col-sm-8" id="order-total">
-					    $<span id="order-value">10</span> + Shipping
+					    $<span id="order-value">20</span> + Shipping
 					  </div>
 					</div>
 					<div class="col-xs-12">
@@ -288,7 +288,7 @@
 
 		<input type='file' name="files[]" class="hidden" id="image-input" multiple/>
 
-<div class="hidden">
+<div class="">
 	<%= form_for(@order) do |f| %>
 
 		<div class="field">
@@ -306,6 +306,10 @@
 	  <div class="field">
 	    <%= f.label :canvas %><br>
 	    <%= f.text_field :canvas %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :image %><br>
+	    <%= f.text_field :image %>
 	  </div>
 	  <div class="field">
 	    <%= f.label :offset %><br>

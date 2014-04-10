@@ -82,8 +82,11 @@ $(document).ready(function(){
     		var color = color.toRgbString();
     		canvas.item(0).fill = color;
     		canvas.renderAll();
+    		console.log(color);
+    		$('#outside-edge').css('border-color', color);
 			}
 
+			
 	});
 
   // Adding clipart on clicks
@@ -143,13 +146,13 @@ $(document).ready(function(){
 	  var index = canvas.getObjects().indexOf(obj);
 	  var numIndex = canvas.getObjects().length - 1;
 
-	  if(index<numIndex && index>2){
+	  if(index<numIndex && index>1){
 	  	$('#move-up-icon').removeClass("hidden");
 	  	$('#move-down-icon').removeClass("hidden");
-	  } else if (index==numIndex && index>2){
+	  } else if (index==numIndex && index>1){
 	  	$('#move-up-icon').addClass("hidden");
 	  	$('#move-down-icon').removeClass("hidden");
-	  } else if (index==2 && index<numIndex){
+	  } else if (index==1 && index<numIndex){
 	  	$('#move-up-icon').removeClass("hidden");
 	  	$('#move-down-icon').addClass("hidden");
 	  } else{
@@ -343,13 +346,13 @@ $(document).ready(function(){
 
 	  var index = canvas.getObjects().indexOf(obj);
 
-	  if(index<numIndex && index>2){
+	  if(index<numIndex && index>1){
 	  	$('#move-up-icon').removeClass("hidden");
 	  	$('#move-down-icon').removeClass("hidden");
-	  } else if (index==numIndex && index>2){
+	  } else if (index==numIndex && index>1){
 	  	$('#move-up-icon').addClass("hidden");
 	  	$('#move-down-icon').removeClass("hidden");
-	  } else if (index==2 && index<numIndex){
+	  } else if (index==1 && index<numIndex){
 	  	$('#move-up-icon').removeClass("hidden");
 	  	$('#move-down-icon').addClass("hidden");
 	  } else{
@@ -360,18 +363,18 @@ $(document).ready(function(){
 
 	$('#move-down-icon').click(function(){
 		var obj = canvas.getActiveObject();
-	  canvas.moveTo(obj, 2);
+	  canvas.moveTo(obj, 1);
 
 	  var index = canvas.getObjects().indexOf(obj);
 	  var numIndex = canvas.getObjects().length - 1;
 
-	  if(index<numIndex && index>2){
+	  if(index<numIndex && index>1){
 	  	$('#move-up-icon').removeClass("hidden");
 	  	$('#move-down-icon').removeClass("hidden");
-	  } else if (index==numIndex && index>2){
+	  } else if (index==numIndex && index>1){
 	  	$('#move-up-icon').addClass("hidden");
 	  	$('#move-down-icon').removeClass("hidden");
-	  } else if (index==2 && index<numIndex){
+	  } else if (index==1 && index<numIndex){
 	  	$('#move-up-icon').removeClass("hidden");
 	  	$('#move-down-icon').addClass("hidden");
 	  } else{
@@ -475,20 +478,22 @@ $(document).ready(function(){
 	});
 
 	$('#order-checkout').click(function(event){
-		$('#order_canvas').val(JSON.stringify(canvas));
+		$('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
+		$('#order_image').val(canvas.toDataURL('png'));
 		$('#order_startW').val(oriContWidth);
 		$("form:first").submit();
 	});
 
 	if ($('#order_canvas').val()){
 		console.log('loading from canvas');
-		canvas.loadFromJSON($('#order_canvas').val());
-    $('#order-quantity').val($('#order_quantity').val());
-    setPrice($('#order_quantity').val());
+		canvas.loadFromDatalessJSON($('#order_canvas').val());
+		$('#order-quantity').val($('#order_quantity').val());
+	  setPrice($('#order_quantity').val());
 
 		canvas.renderAll();
 
 	} else {
+
 		var phoneBkg = new fabric.Rect({
 		  originY: "top",
 		  originX: "center",
@@ -502,6 +507,7 @@ $(document).ready(function(){
 		  selectable: false,
 		});
 		canvas.add(phoneBkg);
+		$('#order_startW').val(oriContWidth);
 	};
 
 	canvas.renderAll();
@@ -509,31 +515,87 @@ $(document).ready(function(){
 });
 
 setTimeout(function(){
+	
+	console.log("First attempt")
 	var obj = canvas.item(0);
 	obj.selectable = false;
 
-	var obj = canvas.item(1);
-	obj.set({
-		transparentCorners: true,
-	  hasBorders: false,
-		lockUniScaling: true,
-		hasCorners: false,
-		borderColor: 'rgba(0,0,0,0)',
-		cornerColor: 'rgba(0,0,0,0)',
-		cornerSize: 20,
-	});
+	if (obj){
+		for (var i=1;i<canvas.getObjects().length;i++)
+			{ 
+				var obj = canvas.item(i);
+				obj.set({
+					transparentCorners: true,
+				  hasBorders: false,
+					lockUniScaling: true,
+					hasCorners: false,
+					borderColor: 'rgba(0,0,0,0)',
+					cornerColor: 'rgba(0,0,0,0)',
+					cornerSize: 20,
+				});
+			}
 
-	oriContWidth = $('#order_startW').val();
-	canvasOffset = -(oriContWidth - $('#canvas-container').width())/2;
+		oriContWidth = $('#order_startW').val();
+		
+		resizeCanvas();
+		canvas.calcOffset();
+		canvas.renderAll();
 
-	$('.canvas-container').css("left", canvasOffset);
 
-	if(canvas.getActiveObject()){
-		moveButtons();
-	};
+	} else {
+		setTimeout(function(){
+			console.log("Second attempt")
+			var obj = canvas.item(0);
+			obj.selectable = false;
 
-	canvas.renderAll();
-}, 1000);
+			if (obj){
+				var obj = canvas.item(1);
+				obj.set({
+					transparentCorners: true,
+				  hasBorders: false,
+					lockUniScaling: true,
+					hasCorners: false,
+					borderColor: 'rgba(0,0,0,0)',
+					cornerColor: 'rgba(0,0,0,0)',
+					cornerSize: 20,
+				});
+
+				oriContWidth = $('#order_startW').val();
+				
+				resizeCanvas();
+				canvas.calcOffset();
+				canvas.renderAll();
+			} else {
+				setTimeout(function(){
+					console.log("Third attempt")
+					var obj = canvas.item(0);
+					obj.selectable = false;
+
+					if (obj){
+						var obj = canvas.item(1);
+						obj.set({
+							transparentCorners: true,
+						  hasBorders: false,
+							lockUniScaling: true,
+							hasCorners: false,
+							borderColor: 'rgba(0,0,0,0)',
+							cornerColor: 'rgba(0,0,0,0)',
+							cornerSize: 20,
+						});
+
+						oriContWidth = $('#order_startW').val();
+						
+						resizeCanvas();
+						canvas.calcOffset();
+						canvas.renderAll();
+					} else {
+						console.log("Something is wrong");
+					}
+				}, 1000);
+			}
+		}, 1000);
+	}
+}, 500);
 
 /*
 
@@ -624,13 +686,17 @@ function moveButtons(){
 function resizeCanvas(){
 
 	canvasOffset = -(oriContWidth - $('#canvas-container').width())/2;
-	$('#order_offset').val(canvasOffset);
 
+	$('#order_offset').val(canvasOffset);
 	$('.canvas-container').css("left", canvasOffset);
 
 	if(canvas.getActiveObject()){
 		moveButtons();
 	};
+
+	canvas.renderAll();
+
+
 
 	//resetting size of Canvas
 	/*var canvasHeight = $(window).height()-$('#instacase-header').height()-14
@@ -747,7 +813,7 @@ function applyFilterValue(index, prop, value) {
 
 // Set Total Price
 function setPrice(value) {
-	var total = value * 10;
+	var total = value * 20;
 	$('#order-value').html(total);
 	$('#order_quantity').val(value);
 };
