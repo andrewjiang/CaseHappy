@@ -482,7 +482,7 @@ $(document).ready(function(){
 
 		var containerWidth = $('#canvas-container').width();
 
-		$('#order_image').val(canvas.toDataURL({ left:  containerWidth / 2 - 125, top: 20, width: 250, height: 460 }));
+		$('#order_image').val(canvas.toDataURL({ left:  containerWidth / 2 - canvasOffset - 125, top: 20, width: 250, height: 460 }));
 		$('#order_startW').val(oriContWidth);
 		$("form:first").submit();
 	});
