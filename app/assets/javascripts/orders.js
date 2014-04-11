@@ -479,7 +479,10 @@ $(document).ready(function(){
 
 	$('#order-checkout').click(function(event){
 		$('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
-		$('#order_image').val(canvas.toDataURL('png'));
+
+		var containerWidth = $('#canvas-container').width();
+
+		$('#order_image').val(canvas.toDataURL({ left:  containerWidth / 2 - 125, top: 20, width: 250, height: 460 }));
 		$('#order_startW').val(oriContWidth);
 		$("form:first").submit();
 	});
