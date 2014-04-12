@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 			puts @cart.id
 		end
 		puts @cart.id
-		@cart_items = Order.where(cart: @cart.id).count
+		@cart_items = Order.where(cart: @cart.id.to_s).count
 		puts @cart_items
   end
 
