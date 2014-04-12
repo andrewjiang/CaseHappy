@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @cart.user %>
+</p>
+
+<p>
+  <strong>Session:</strong>
+  <%= @cart.session %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @cart.total %>
+</p>
+
+<% @orders.each do |order| %>
+
+	<%= order.id %>
+	<img src='<%= order.image %>' style="width:400; height: auto">
+
+<% end %>

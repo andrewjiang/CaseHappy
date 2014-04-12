@@ -1,6 +1,8 @@
 Casehappy::Application.routes.draw do
 
 
+  resources :carts
+
   devise_for :users
   resources :orders
 

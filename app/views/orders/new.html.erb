@@ -296,12 +296,12 @@
 	    <% if user_signed_in? %>
         <%= f.text_field :user, :value => current_user.email %>
       <% else %>
-        <%= f.text_field :user, :value => "guest" %>
+        <%= f.text_field :user, :value => @cart.user %>
       <% end %> 
 	  </div>
 	  <div class="field">
 	    <%= f.label :quantity %><br>
-	    <%= f.number_field :quantity %>
+	    <%= f.number_field :quantity, :value => 1 %>
 	  </div>
 	  <div class="field">
 	    <%= f.label :canvas %><br>
@@ -322,6 +322,10 @@
 	  <div class="field">
 	    <%= f.label :model %><br>
 	    <%= f.text_field :model, :value => @model %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :cart %><br>
+	    <%= f.text_field :cart, :value => @cart.id %>
 	  </div>
 	  <div class="actions">
 	    <%= f.submit %>
