@@ -469,6 +469,12 @@ $(document).ready(function(){
       applyFilterValue(8, 'blocksize', parseInt(element.value, 10));
   });
 
+ 	$('canvas').click(function(event){
+ 		$('#clipart-box').addClass('hidden');
+		$('#background-box').addClass('hidden');
+  });
+
+
 
 	// Order Options
 
@@ -505,8 +511,8 @@ $(document).ready(function(){
 		  fill: 'white',
 		  width: 290,
 		  height: 500,
-		  rx: 46,
-		  ry: 46,
+		  rx: 66,
+		  ry: 66,
 		  selectable: false,
 		});
 		canvas.add(phoneBkg);

@@ -466,29 +466,30 @@ a:hover{
 		border-radius: 50%;
 	}
 	#control-box{
-		padding: 10px 10px 0px 10px;
 		position: absolute;
 		top: 10px;
 		left: 10px;
 		border: 1px solid #aaa;
-		border-radius: 5px;
 		background-color: #eee;
 	}
 	.control-icon{
 		position: relative;
 		font-size: 24px;
 		width: 200px;
-		height: 40px;
-		background-color: #222;
+		height: 60px;
+		background-color: #fff;
 		opacity: 0.9;
 		text-align: left;
-		border-radius: 6px;
-		color: #fff;	
+		color: #444;	
 		display: block;
-		margin-bottom: 10px;
 		padding-left: 10px;
 		padding-right: 10px;
 		padding-top: 0px;
+		border: 1px solid	#EAEBEC;
+		border-bottom: none;
+	}
+	#control-box .control-icon:last-child{
+		border-bottom: 1px solid	#EAEBEC;	
 	}
 	.control-icon .glyphicon{
 		padding-top: 6px;
@@ -497,6 +498,7 @@ a:hover{
 	.control-icon:hover{
 		opacity: 1;
 		cursor: pointer;
+		color: #2980b9;	
 	}
 	.control-icon.inactive{
 		opacity: 0.3;
@@ -510,12 +512,11 @@ a:hover{
 	}
 	.control-icon .control-label{
 		font-weight: 300;
-		color: #fff;
-		font-size: 18px;
+		font-size: 16px;
 		padding-left: 10px;
 		position: absolute;
-		top: 6px;
-		left: 34px;
+		top: 18px;
+		left: 38px;
 	}
 	
 	#case-absolute{
@@ -526,7 +527,7 @@ a:hover{
 	#outside-border{
 		width: 290px;
 		height: 500px;
-		border: 1px solid #e74c3c;
+		border: 1px dotted #2c3e50;
 		border-radius: 60px;
 		position: absolute;
 		top: 10px;
@@ -540,7 +541,7 @@ a:hover{
 	#inside-border{
 		width: 210px;
 		height: 420px;
-		border: 1px solid #c0392b;
+		border: 1px solid #2c3e50;
 		border-radius: 20px;
 		position: absolute;
 		top: 50px;
@@ -554,7 +555,7 @@ a:hover{
 	#camera-border{
 		width: 72px;
 		height: 30px;
-		border: 1px solid #c0392b;
+		border: 1px solid #2c3e50;
 		border-radius: 15px;
 		position: absolute;
 		top: 64px;
@@ -1188,15 +1189,20 @@ ul.nav {
 }
 
 
-/* /!\ You need to add vendor prefixes in order to render the CSS properly (or simply use http://leaverou.github.io/prefixfree/) /!\ */ #tridiv {
+/* /!\ You need to add vendor prefixes in order to render the CSS properly (or simply use http://leaverou.github.io/prefixfree/) /!\ */ 
+#tridiv {
   perspective: 800px;
   -webkit-perspective: 800px;
   position: absolute;
   overflow: hidden;
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 500px;
+  margin-left: 0px;
   background: transparent;
   font-size: 150%;
+  pointer-events: none;
+  border-right: 1px solid #333;
+
 }
 .face {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0);
