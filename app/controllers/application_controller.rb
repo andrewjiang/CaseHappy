@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 		if @cart == nil
 			puts current_user
 			puts "Nil"
-			if current_user == nil
+			if current_user.nil?
 				@user =  "guest" + @session_id
 				puts @user
 				@cart = Cart.new(session: @session_id, user: "guest" + @session_id)
@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
 		else
 			puts @cart.session
 			puts "oops"
+			puts @cart.id
 		end
 		puts @cart.id
 		@cart_items = Order.where(cart: @cart.id).count
