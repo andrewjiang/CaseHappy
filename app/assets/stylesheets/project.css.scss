@@ -524,18 +524,18 @@ a:hover{
 		top: 10px;
 	}
 	#outside-border{
-		width: 250px;
-		height: 460px;
+		width: 290px;
+		height: 500px;
 		border: 1px solid #e74c3c;
-		border-radius: 40px;
+		border-radius: 60px;
 		position: absolute;
-		top: 20px;
+		top: 10px;
 		left: 50%;
-		margin-left: -125px;
+		margin-left: -145px;
 		pointer-events:none;
-		-moz-box-shadow: 0px 0px 0px 10000px rgba(235,235,235, 0.9);
-	  -webkit-box-shadow: 0px 0px 0px 10000px rgba(235,235,235, 0.9);
-	  box-shadow: 0px 0px 0px 10000px rgba(235,235,235, 0.9);
+		-moz-box-shadow: 0px 0px 0px 10000px rgba(235,235,235, 0.8);
+	  -webkit-box-shadow: 0px 0px 0px 10000px rgba(235,235,235, 0.8);
+	  box-shadow: 0px 0px 0px 10000px rgba(235,235,235, 0.8);
 	}
 	#inside-border{
 		width: 210px;
@@ -543,13 +543,13 @@ a:hover{
 		border: 1px solid #c0392b;
 		border-radius: 20px;
 		position: absolute;
-		top: 40px;
+		top: 50px;
 		left: 50%;
 		margin-left: -105px;
 		pointer-events:none;
-		-moz-box-shadow: 0px 0px 0px 10000px rgba(50,50,50, 0.1);
-	  -webkit-box-shadow: 0px 0px 0px 10000px rgba(50,50,50, 0.1);
-	  box-shadow: 0px 0px 0px 10000px rgba(50,50,50, 0.1);
+		-moz-box-shadow: 0px 0px 0px 10000px rgba(50,50,50, 0.2);
+	  -webkit-box-shadow: 0px 0px 0px 10000px rgba(50,50,50, 0.2);
+	  box-shadow: 0px 0px 0px 10000px rgba(50,50,50, 0.2);
 	}
 	#camera-border{
 		width: 72px;
@@ -557,21 +557,21 @@ a:hover{
 		border: 1px solid #c0392b;
 		border-radius: 15px;
 		position: absolute;
-		top: 54px;
+		top: 64px;
 		left: 50%;
 		margin-left: -92px;
 		pointer-events:none;
 		background-color: rgba(235,235,235,0.9)
 	}
 	#outside-edge{
-		width: 250px;
-		height: 460px;
-		border: 20px solid white;
-		border-radius: 40px;
+		width: 290px;
+		height: 500px;
+		border: 40px solid white;
+		border-radius: 60px;
 		position: absolute;
-		top: 20px;
+		top: 10px;
 		left: 50%;
-		margin-left: -125px;
+		margin-left: -145px;
 		pointer-events:none;
 	}
 	.close-button{
@@ -1199,7 +1199,7 @@ ul.nav {
   font-size: 150%;
 }
 .face {
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0);
 }
 .scene, .shape, .face, .face-wrapper, .cr {
   position: absolute;
@@ -1508,9 +1508,74 @@ ul.nav {
 }
 .photon-shader-alt {
   position: absolute;
-  right: 85px;
+  right: 45px;
   bottom: -125px;
-  width: 250px;
+  width: 290px;
   height: 460px;
   -webkit-transform: rotate(90deg);
+}
+.photon-shader-alt-side {
+  position: absolute;
+  right: 64px;
+  bottom: -335px;
+  width: 290px;
+  height: 460px;
+  -webkit-transform: rotate(-90deg);
+  opacity: 0.9;
+}
+.photon-shader-alt-top {
+  position: absolute;
+  right: -61px;
+  bottom: -420px;
+  width: 290px;
+  height: 460px;
+  opacity: 0.9;
+  -webkit-backface-visibility: hidden;
+}
+.photon-shader-alt-top-case {
+  position: absolute;
+  right: -10px;
+  bottom: -4px;
+  width: 200px;
+  height: 30px;
+  opacity: 1; 
+  -webkit-backface-visibility: hidden;
+  background-repeat: no-repeat;
+  border: 1px solid white;
+
+}
+.photon-shader-alt-cr {
+  position: absolute;
+  width: 290px;
+  height: 460px;
+  opacity: 0.9;
+  -webkit-backface-visibility: hidden;
+}
+.photon-shader-alt-cr.cr-1{
+	right: -333px;
+  bottom: -335px;
+  -webkit-transform: rotate(-90deg);
+
+}
+.photon-shader-alt-cr.cr-2{
+	right: -323px;
+  bottom: -335px;
+  -webkit-transform: rotate(-90deg);
+}
+.photon-shader-alt-cr.cr-3{
+	right: -313px;
+  bottom: -335px;
+  -webkit-transform: rotate(-90deg);
+}
+.photon-shader-alt-cr.cr-4{
+	right: 77px;
+  bottom: -335px;
+  -webkit-transform: rotate(-90deg);
+}
+.photon-shader.camera-lens{
+	background-image: url('/images/iphone-white-back.jpg');
+	background-position: -10px -12px;
+	-webkit-transform: rotate(-90deg);
+	width: 73px;
+	background-size:200px;
 }

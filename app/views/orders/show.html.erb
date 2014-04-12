@@ -1,3 +1,5 @@
+<p id="notice"><%= notice %></p>
+
 <div id="tridiv">
   <div class="scene" style="-webkit-transform:rotateX(-1464deg) rotateY(-43deg); -moz-transform:rotateX(-1464deg) rotateY(-43deg); -ms-transform:rotateX(-1464deg) rotateY(-43deg); transform:rotateX(-1464deg) rotateY(-43deg); ">
     <div class="shape cuboid-1 cub-1">
@@ -5,13 +7,16 @@
         <div class="photon-shader" style="background-color: rgba(0, 0, 0, 0.494118);"></div>
       </div>
       <div class="face bk">
-        <div class="photon-shader" style="background-color: rgba(0, 0, 0, 0.105882);"></div>
+        <div class="photon-shader-alt-side" style="background-image: url(<%= @order.image %>);"></div>
       </div>
       <div class="face rt">
         <div class="photon-shader" style="background-color: rgba(0, 0, 0, 0.54902);"></div>
       </div>
-      <div class="face lt">
-        <div class="photon-shader" style="background-color: rgba(0, 0, 0, 0.0509804);"></div>
+      <div class="face lt" style="-webkit-backface-visibility: hidden; border: 1px solid rgba(0, 0, 0, 0);">
+        <div class="photon-shader-alt-top" style="background-image: url(<%= @order.image %>);"></div>
+      </div>
+      <div class="face lt" style="-webkit-backface-visibility: hidden; -webkit-transform: rotateY(90deg) translateX(-50%) translateY(-10%); z-index: 1000; height: 32px; border: 1px solid rgba(0, 0, 0, 0);">
+        <img class="photon-shader-alt-top-case" src='/images/case-top.png'></img>
       </div>
       <div class="face bm">
         <div class="photon-shader-alt" style="background-image: url(<%= @order.image %>);"></div>
@@ -32,18 +37,18 @@
       </div>
       <div class="cr cr-1">
         <div class="face side s0">
-          <div class="photon-shader" style="background-color: rgba(0, 0, 0, 0.129412);"></div>
+          <div class="photon-shader-alt-cr cr-1" style="background-image: url(<%= @order.image %>);"></div>
         </div>
         <div class="face side s1">
-          <div class="photon-shader" style="background-color: rgba(0, 0, 0, 0.0627451);"></div>
+          <div class="photon-shader-alt-cr cr-2" style="background-image: url(<%= @order.image %>);"></div>
         </div>
         <div class="face side s2">
-          <div class="photon-shader" style="background-color: rgba(0, 0, 0, 0.0745098);"></div>
+          <div class="photon-shader-alt-cr cr-3" style="background-image: url(<%= @order.image %>);"></div>
         </div>
       </div>
       <div class="cr cr-2">
         <div class="face side s0">
-          <div class="photon-shader" style="background-color: rgba(0, 0, 0, 0.14902);"></div>
+          <div class="photon-shader-alt-cr cr-4 " style="background-image: url(<%= @order.image %>);"></div>
         </div>
         <div class="face side s1">
           <div class="photon-shader" style="background-color: rgba(0, 0, 0, 0.254902);"></div>
@@ -74,14 +79,11 @@
       <div class="face rt">
         <div class="photon-shader" style="background-color: rgba(0, 0, 0, 0.0509804);"></div>
       </div>
-      <div class="face lt">
-        <div class="photon-shader" style="background-color: rgba(0, 0, 0, 0.54902);"></div>
-      </div>
       <div class="face bm">
         <div class="photon-shader" style="background-color: rgba(0, 100, 0, 0.509804);"></div>
       </div>
       <div class="face tp">
-        <div class="photon-shader" style="background-color: rgba(0, 0, 0, 0.0901961);"></div>
+        <div class="photon-shader camera-lens" style="background-color: rgba(0, 0, 0, 0.0901961);"></div>
       </div>
       <div class="cr cr-0">
         <div class="face side s0">
@@ -130,17 +132,6 @@
     </div>
   </div>
 </div>
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Image:</strong>
-  <div class="image-holder" style="opacity:0;">
-    <img src="<%= @order.image %>" id="image" />
-    <div class="" id="image-border">
-    </div>
-  <div>
-  
-</p>
 
 <p>
   <strong>User:</strong>

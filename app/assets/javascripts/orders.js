@@ -482,7 +482,7 @@ $(document).ready(function(){
 
 		var containerWidth = $('#canvas-container').width();
 
-		$('#order_image').val(canvas.toDataURL({ left:  containerWidth / 2 - canvasOffset - 125, top: 20, width: 250, height: 460 }));
+		$('#order_image').val(canvas.toDataURL({ left:  containerWidth / 2 - canvasOffset - 145, top: 10, width: 290, height: 500 }));
 		$('#order_startW').val(oriContWidth);
 		$("form:first").submit();
 	});
@@ -501,10 +501,10 @@ $(document).ready(function(){
 		  originY: "top",
 		  originX: "center",
 		  left: containerWidth / 2,
-	    top: 20,  
+	    top: 10,  
 		  fill: 'white',
-		  width: 250,
-		  height: 460,
+		  width: 290,
+		  height: 500,
 		  rx: 46,
 		  ry: 46,
 		  selectable: false,
