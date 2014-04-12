@@ -1272,7 +1272,7 @@ ul.nav {
 }
 [class*="cuboid"] .bm {
   transform: rotateX(-90deg) translateY(-50%);
-  -webkit-transform: rotateX(-90deg) translateY(-50%);
+  -webkit-transform: rotateX(-90deg) translateY(-50%) translateZ(-0.02em);
 }
 [class*="cuboid"] .lt {
   left: 100%;
@@ -1300,6 +1300,9 @@ ul.nav {
 .cub-1 .rt, .cub-1 .lt {
   width:10em;
   height:2em;
+  border: 1px solid rgba(0,0,0,0);
+  border-left: 10px solid #444;
+  border-bottom: 2px solid #777;
 }
 .cub-1 .tp, .cub-1 .bm {
   width:20em;
@@ -1359,16 +1362,16 @@ ul.nav {
   -webkit-transform: rotateY(105deg) translate3D(-50%, 0, 0.935em);
 }
 .cub-1 .cr-1 .s1 {
-  transform: rotateY(135deg) translate3D(-50%, 0, 0.935em);
-  -webkit-transform: rotateY(135deg) translate3D(-50%, 0, 0.935em);
+  transform: rotateY(140deg) translate3D(-62%, 0, 0.935em);
+  -webkit-transform: rotateY(140deg) translate3D(-62%, 0, 0.935em);
 }
 .cub-1 .cr-1 .s2 {
   transform: rotateY(165deg) translate3D(-47%, 0, 0.935em);
   -webkit-transform: rotateY(165deg) translate3D(-47%, 0, 0.935em);
 }
 .cub-1 .cr-2 .s0 {
-  transform: rotateY(195deg) translate3D(-50%, 0, 0.935em);
-  -webkit-transform: rotateY(195deg) translate3D(-50%, 0, 0.935em);
+  transform: rotateY(195deg) translate3D(-40%, 0, 0.935em);
+  -webkit-transform: rotateY(195deg) translate3D(-40%, 0, 0.935em);
 }
 .cub-1 .cr-2 .s1 {
   transform: rotateY(225deg) translate3D(-50%, 0, 0.935em);
@@ -1431,6 +1434,9 @@ ul.nav {
 }
 .cub-2 .rt, .cub-2 .lt {
   width:2em;
+}
+.cub-2 .tp{
+	border: 3px solid #444;
 }
 .cub-2 .tp, .cub-2 .bm, .cub-2 .tp .photon-shader, .cub-2 .bm .photon-shader {
   border-radius:0.714285em;
@@ -1574,8 +1580,9 @@ ul.nav {
 }
 .photon-shader.camera-lens{
 	background-image: url('/images/iphone-white-back.jpg');
-	background-position: -10px -12px;
+	background-position: -10px -14px;
 	-webkit-transform: rotate(-90deg);
-	width: 73px;
-	background-size:200px;
+	width: 78px;
+	background-size:220px;
+	left: -10px;
 }
