@@ -13,9 +13,9 @@ class ApplicationController < ActionController::Base
 			puts current_user
 			puts "Nil"
 			if current_user.nil?
-				@user =  "guest" + @session_id
+				@user =  "guest" + @session_id.to_s
 				puts @user
-				@cart = Cart.new(session: @session_id, user: "guest" + @session_id)
+				@cart = Cart.new(session: @session_id, user: "guest" + @session_id.to_s)
 			else
 				@user =  current_user.email
 				@cart = Cart.new(session: @session_id, user: current_user)
