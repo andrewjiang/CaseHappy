@@ -11,6 +11,7 @@ class CartsController < ApplicationController
   # GET /carts/1.json
   def show
     @orders = Order.where(cart: params[:id])
+    @cart_total = @orders.sum("quantity * price")
   end
 
   # GET /carts/new

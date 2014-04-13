@@ -324,9 +324,14 @@
 	    <%= f.text_field :model, :value => @model %>
 	  </div>
 	  <div class="field">
+	    <%= f.label :price %><br>
+	    <%= f.text_field :price, :value => 20 %>
+	  </div>
+	  <div class="field">
 	    <%= f.label :cart %><br>
 	    <%= f.text_field :cart, :value => @cart.id %>
 	  </div>
+
 	  <div class="actions">
 	    <%= f.submit %>
 	  </div>

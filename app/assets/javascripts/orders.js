@@ -822,7 +822,7 @@ function applyFilterValue(index, prop, value) {
 
 // Set Total Price
 function setPrice(value) {
-	var total = value * 20;
+	var total = value * $('#order_price').val();
 	$('#order-value').html(total);
 	$('#order_quantity').val(value);
 };
