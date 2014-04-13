@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /carts
   # GET /carts.json
   def index
@@ -10,6 +10,9 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+    @cart = Cart.find(params[:id])
+    @session_id = request.session_options[:id]
+    redirect_to(root_url) unless @session_id == @cart.session
     @orders = Order.where(cart: params[:id])
     @cart_total = @orders.sum("quantity * price")
     @cart_items = @orders.sum("quantity")
@@ -22,6 +25,9 @@ class CartsController < ApplicationController
 
   # GET /carts/1/edit
   def edit
+    @cart = Cart.find(params[:id])
+    @session_id = request.session_options[:id]
+    redirect_to(root_url) unless @session_id == @cart.session
   end
 
   # POST /carts
@@ -74,4 +80,5 @@ class CartsController < ApplicationController
     def cart_params
       params.require(:cart).permit(:user, :session, :total)
     end
+
 end
