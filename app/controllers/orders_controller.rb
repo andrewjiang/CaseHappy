@@ -31,8 +31,8 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @order }
+        format.html { redirect_to @cart, notice: 'Order was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @cart }
       else
         format.html { render action: 'new' }
         format.json { render json: @order.errors, status: :unprocessable_entity }
@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.html { redirect_to @cart, notice: 'Order was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

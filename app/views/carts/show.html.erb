@@ -35,15 +35,12 @@
 	    class="stripe-button"
 	    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
 	    data-image="http://tctechcrunch2011.files.wordpress.com/2014/03/moneument-valley2.png?w=738"
-	    data-name="Monument Valley"
-	    data-description='CaseHappy (<%= @cart_total%>)'
+	    data-name="CaseHappy"
+	    data-description='CaseHappy (<%= number_to_currency(@cart_total, options = {format: "%u%n", precision: 2}) %>)'
 	    data-amount="<%= @cart_total * 100 %>"
 	    data-shipping-address="true">
 	  </script>
 	</form></h4>
 	
 </div>
-
-<p id="notice"><%= notice %></p>
-
 
