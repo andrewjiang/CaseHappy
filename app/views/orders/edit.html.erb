@@ -30,7 +30,7 @@
 				</button>
 				<button class="control-icon" id="cart-icon">
 					<span class="glyphicon glyphicon-floppy-disk"></span>
-					<div class="hidden-on-mobile control-label">Save Design</div>
+					<div class="hidden-on-mobile control-label" id="order-save">Save + Preview</div>
 				</button>
 			</div>
 
@@ -84,18 +84,18 @@
 					  </div>
 					  <div class="col-xs-8 col-sm-offset-4">
 						  <div class="checkbox">
-						    <input type="checkbox" id="order-edges"><span class="order-label">Don't print on side of case</span>
+						    <input type="checkbox" id="order-edges"><span class="order-label">Don't print on sides</span>
 						  </div>
 						</div>
 					  <div class="col-xs-4 hidden-on-mobile">
 					    <label for="order-color">Total</label>
 					  </div>
 					  <div class="col-sm-8" id="order-total">
-					    $<span id="order-value">20</span> + Shipping
+					    $<span id="order-value">20</span>
 					  </div>
 					</div>
 					<div class="col-xs-12">
-					   <button class="btn btn-primary btn-block btn-lg" id="order-checkout"><span class="glyphicon glyphicon-floppy-disk"></span> Save Design</button>
+					   <button class="btn btn-primary btn-block btn-lg" id="order-checkout"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</button>
 					</div>
 				<!--/form-->
 			</div>
@@ -315,7 +315,8 @@
 	    <%= f.text_field :price %>
 	  </div>
 	  <div class="actions">
-	    <%= f.submit %>
+	    <%= f.submit "new", :id=>"submit-new" %>
+	    <%= f.submit "save", :id=>"submit-save" %>
 	  </div>
 	  <br><br><br><br>
 	<% end %>

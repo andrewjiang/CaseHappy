@@ -12,6 +12,7 @@ class CartsController < ApplicationController
   def show
     @orders = Order.where(cart: params[:id])
     @cart_total = @orders.sum("quantity * price")
+    @cart_items = @orders.sum("quantity")
   end
 
   # GET /carts/new

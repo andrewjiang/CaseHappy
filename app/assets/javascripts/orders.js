@@ -490,13 +490,31 @@ $(document).ready(function(){
 
 		$('#order_image').val(canvas.toDataURL({ left:  containerWidth / 2 - canvasOffset - 145, top: 10, width: 290, height: 500 }));
 		$('#order_startW').val(oriContWidth);
-		$("form:first").submit();
+		$('#submit-new').click();
+
+	});
+
+	$('#order-save').click(function(event){
+		console.log("save");
+		$('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
+
+		var containerWidth = $('#canvas-container').width();
+
+		$('#order_image').val(canvas.toDataURL({ left:  containerWidth / 2 - canvasOffset - 145, top: 10, width: 290, height: 500 }));
+		$('#order_startW').val(oriContWidth);
+		$('#submit-save').click();
+
 	});
 
 	if ($('#order_canvas').val()){
 		console.log('loading from canvas');
 		canvas.loadFromDatalessJSON($('#order_canvas').val());
-		$('#order-quantity').val($('#order_quantity').val());
+		if ($('#order_quantity').val()==0){
+			$('#order-quantity').val(1);
+		} else{
+			$('#order-quantity').val($('#order_quantity').val());
+		}
+		
 	  setPrice($('#order_quantity').val());
 
 		canvas.renderAll();
