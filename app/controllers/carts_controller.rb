@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :set_cart, only: [:show,:edit, :update, :destroy, :thankyou]
   
   # GET /carts
   # GET /carts.json
@@ -16,6 +16,16 @@ class CartsController < ApplicationController
     @orders = Order.where(cart: params[:id])
     @cart_total = @orders.sum("quantity * price")
     @cart_items = @orders.sum("quantity")
+  end
+
+  def thankyou
+    puts "Thank You Again"
+    
+    @cart = Cart.find(params[:id])
+    puts @cart.id
+    
+    @cart.update_attribute(:session, "PAID")
+
   end
 
   # GET /carts/new

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
 
 	before_filter :set_cart
 
@@ -26,8 +26,11 @@ class ApplicationController < ActionController::Base
 			puts "oops"
 			puts @cart.id
 		end
-		@cart_items = Order.where(cart: @cart.id.to_s).sum(:quantity)
 
+		@cart_items = Order.where(cart: @cart.id.to_s).sum(:quantity)
+		if @cart_items == 0
+			@cart_items = ""
+		end
 
   end
 

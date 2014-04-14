@@ -1,6 +1,7 @@
 Casehappy::Application.routes.draw do
 
 
+  
   resources :carts
 
   devise_for :users
@@ -9,6 +10,9 @@ Casehappy::Application.routes.draw do
   root to: "pages#home"
 
   get '/choose' => 'pages#choose'
+
+  post '/carts/charge/:id' => 'carts#thankyou'
+  get '/carts/charge/:id' => 'carts#thankyou'
 
   
   # The priority is based upon order of creation: first created -> highest priority.

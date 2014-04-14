@@ -40,9 +40,9 @@
     </div>
 	</div>
 
-	<h5 style="text-align:right">Shipping: <span style="text-decoration: line-through">$5.00</span> <span class="flatgreen">FREE</span><br></h5>
+	<h5 style="text-align:right">Shipping (4-6 days): <span style="text-decoration: line-through">$5.00</span> <span class="flatgreen">FREE</span><br></h5>
 	<h4 style="text-align:right">Total: <%= number_to_currency(@cart_total, options = {format: "%u%n", precision: 2}) %><br><br>
-	<form action="/charge" method="POST">
+	<form action="/carts/charge/<%= params[:id] %>" method="POST">
 	  <script
 	    src="https://checkout.stripe.com/checkout.js"
 	    class="stripe-button"

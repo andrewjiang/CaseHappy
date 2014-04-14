@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
 
     
     @order = Order.find(params[:id])
-    @cart = Cart.find(Order.find('96').cart)
+    @cart = Cart.find(@order.cart)
     @session_id = request.session_options[:id]
     if @session_id == @cart.session
       render layout: 'display'
@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
-    @cart = Cart.find(Order.find('96').cart)
+    @cart = Cart.find(@order.cart)
     @session_id = request.session_options[:id]
     if @session_id == @cart.session
 
