@@ -3,9 +3,9 @@ class CartsController < ApplicationController
   
   # GET /carts
   # GET /carts.json
-  def index
-    @carts = Cart.all
-  end
+  #def index
+  #  @carts = Cart.all
+  #end
 
   # GET /carts/1
   # GET /carts/1.json
@@ -19,16 +19,16 @@ class CartsController < ApplicationController
   end
 
   # GET /carts/new
-  def new
-    @cart = Cart.new
-  end
+  #def new
+  #  @cart = Cart.new
+  #end
 
   # GET /carts/1/edit
-  def edit
-    @cart = Cart.find(params[:id])
-    @session_id = request.session_options[:id]
-    redirect_to(root_url) unless @session_id == @cart.session
-  end
+  #def edit
+  #  @cart = Cart.find(params[:id])
+  #  @session_id = request.session_options[:id]
+  #  redirect_to(root_url) unless @session_id == @cart.session
+  #end
 
   # POST /carts
   # POST /carts.json

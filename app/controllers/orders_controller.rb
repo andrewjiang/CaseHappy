@@ -3,14 +3,25 @@ class OrdersController < ApplicationController
 
   # GET /orders
   # GET /orders.json
-  def index
-    @orders = Order.all
-  end
+  #def index
+  #  @orders = Order.all
+  #end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
-    render layout: 'display'
+
+    
+    @order = Order.find(params[:id])
+    @cart = Cart.find(Order.find('96').cart)
+    @session_id = request.session_options[:id]
+    if @session_id == @cart.session
+      render layout: 'display'
+    else
+      redirect_to(root_url)
+    end
+
+    
   end
 
   # GET /orders/new
@@ -21,8 +32,14 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    @order = Order.find(params[:id])
+    @cart = Cart.find(Order.find('96').cart)
+    @session_id = request.session_options[:id]
+    if @session_id == @cart.session
 
-
+    else
+      redirect_to(root_url)
+    end
   end
 
   # POST /orders
@@ -40,22 +57,6 @@ class OrdersController < ApplicationController
           format.html { redirect_to @cart }
           format.json { render action: 'show', status: :created, location: @cart }
         end
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # POST /orders
-  # POST /orders.json
-  def save
-    @order = Order.new(order_params)
-
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to edit_location_path(@order) }
-        format.json { render action: 'edit', status: :created, location: @order }
       else
         format.html { render action: 'new' }
         format.json { render json: @order.errors, status: :unprocessable_entity }
@@ -82,7 +83,7 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
-    
+
   end
 
   # DELETE /orders/1

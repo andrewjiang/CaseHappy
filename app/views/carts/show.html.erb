@@ -10,7 +10,7 @@
             <th>Quantity</th>
             <th>Price / Case</th>
             <th>Total</th>
-            <th></th>
+            <th width="80px"></th>
           </tr>
         </thead>
 
@@ -26,7 +26,7 @@
             	<td><%= number_to_currency(order.quantity * order.price, options = {format: "%u%n", precision: 0})  %></td>
             	<td>
             		<%= link_to edit_order_path(order) do %>
-            			<span class="glyphicon glyphicon-pencil"></span>
+            			<span class="glyphicon glyphicon-pencil" style="margin-right: 10px;"></span>
             		<% end %>
             		<%= link_to order, method: :delete, data: { confirm: 'Are you sure?' }, :class => "flatred" do %>
             			<span class="glyphicon glyphicon-remove"></span>
@@ -44,10 +44,10 @@
 	  <script
 	    src="https://checkout.stripe.com/checkout.js"
 	    class="stripe-button"
-	    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-	    data-image="http://tctechcrunch2011.files.wordpress.com/2014/03/moneument-valley2.png?w=738"
-	    data-name="Order of <%= @cart_items %> custom case(s)"
-	    data-description='CaseHappy (<%= number_to_currency(@cart_total, options = {format: "%u%n", precision: 2}) %>)'
+	    data-key="pk_live_Se8CO7fKMGXFlC1UIEaFwBlI"
+	    data-image="/images/instacase_small.png"
+	    data-name="Order of <%= @cart_items %> Custom Case(s)"
+	    data-description='Total <%= number_to_currency(@cart_total, options = {format: "%u%n", precision: 2}) %>'
 	    data-amount="<%= @cart_total * 100 %>"
 	    data-shipping-address="true">
 	  </script>
@@ -55,5 +55,9 @@
 	<hr>
 	<h4 style="text-align:right; font-family: 'Lato';" class="darkgray">We proudly accept <img style="height:auto; width: 200px;" src="/images/creditcards.jpg"/></h4>
 	
+	<br>
+	<br>
+	<br>
+	<br>>
 </div>
 
