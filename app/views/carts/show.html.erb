@@ -39,9 +39,11 @@
 
     </div>
 	</div>
-
-	<h5 style="text-align:right">Shipping (4-6 days): <span style="text-decoration: line-through">$5.00</span> <span class="flatgreen">FREE</span><br></h5>
+    <div class="row"><div class="col-md-12"><div class="btn btn-warning btn-sm pull-right" style="margin-top:10px; padding: 3px 10px;">Apply</div><input type="text" class="pull-right" placeholder="Promo code" id="promo-code" style="font-size: 14px; border-radius: 0px; border: 2px solid #eee; margin-top: 10px; margin-bottom: 10px; display:block;"/></div></div>
+	<h5 style="text-align:right">
+        Shipping (4-6 days): <span style="text-decoration: line-through">$5.00</span> <span class="flatgreen">FREE</span><br></h5>
 	<h4 style="text-align:right">Total: <%= number_to_currency(@cart_total, options = {format: "%u%n", precision: 2}) %><br><br>
+        
 	<%= form_tag charges_path do %>
 	  <script
 	    src="https://checkout.stripe.com/checkout.js"
@@ -60,6 +62,6 @@
 	<br>
 	<br>
 	<br>
-	<br>>
+	<br>
 </div>
 
