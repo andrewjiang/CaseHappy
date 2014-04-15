@@ -1,6 +1,6 @@
 Casehappy::Application.routes.draw do
 
-
+  resources :charges
   
   resources :carts
 

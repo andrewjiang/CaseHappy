@@ -13,6 +13,8 @@ gem "daemons"
 gem "mail_view", "~> 1.0.3"
 gem "simple_form"
 gem 'font-awesome-sass'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem "stripe_event"
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
