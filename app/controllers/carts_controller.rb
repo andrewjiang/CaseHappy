@@ -10,6 +10,19 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+
+    @code = params[:code]
+
+    if @code == "REDDIT"
+      @discount = 0.75
+      @discount_tag = "REDDIT discount applied (25% off!)"
+    else
+      puts 'Nil'
+      @discount = 1
+      @discount_tag = ""
+    end
+
+
     @cart = Cart.find(params[:id])
     @session_id = request.session_options[:id]
     redirect_to(root_url) unless @session_id == @cart.session

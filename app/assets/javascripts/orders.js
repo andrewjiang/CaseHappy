@@ -1,6 +1,15 @@
 // TODO: Andrew, i think you should read up on object oriented programming when you find the time. This file is insane ;)
 $(document).ready(function(){
 
+//Align text left
+	$('#promo-button').click(function(){
+		if ($('#promo-code').val()=="REDDIT"){
+			window.location = "?code=REDDIT";
+		} else {
+			alert("Please enter a valid promo code");
+		};
+	});
+
     // A reference to the last selected object in the canvas
     var lastSelectedObject = null;
 
@@ -85,6 +94,7 @@ $(document).ready(function(){
 	    move: function(color) {
     		var color = color.toRgbString();
     		canvas.item(0).fill = color;
+    		phoneSides.stroke = color;
     		canvas.renderAll();
     		console.log(color);
     		$('#outside-edge').css('border-color', color);
@@ -417,7 +427,15 @@ $(document).ready(function(){
 
 	//See outside edges / don't print
 	$('#order-edges').click(function(){
-		$('#outside-edge').toggleClass('hidden')
+
+		if (this.checked){
+			phoneSides.stroke = phoneBkg.fill;
+			canvas.add(phoneSides);
+			
+		} else {
+			canvas.remove(phoneSides);
+		}
+		
 	});
 
 	// Object mpve to front / back options
@@ -556,7 +574,7 @@ $(document).ready(function(){
 		$('#background-box').addClass('hidden');
   });
 
-
+ 	
 
 	// Order Options
 
@@ -603,7 +621,7 @@ $(document).ready(function(){
 
 	} else {
 
-		var phoneBkg = new fabric.Rect({
+		window.phoneBkg = new fabric.Rect({
 		  originY: "top",
 		  originX: "center",
 		  left: containerWidth / 2,
@@ -614,6 +632,20 @@ $(document).ready(function(){
 		  rx: 66,
 		  ry: 66,
 		  selectable: false,
+		});
+		window.phoneSides = new fabric.Rect({
+		  originY: "top",
+		  originX: "center",
+		  left: containerWidth / 2,
+	    top: 0,  
+		  fill: 'rgba(0,0,0,0)',
+		  width: 260,
+		  height: 470,
+		  rx: 53,
+		  ry: 53,
+		  selectable: false,
+		  strokeWidth: 50,
+		  stroke: 'white',
 		});
 		canvas.add(phoneBkg);
 		$('#order_startW').val(oriContWidth);

@@ -18,7 +18,7 @@
           <% @orders.each do |order| %>
             <tr>
             	<td><%= link_to edit_order_path(order) do %>
-            		<div style="height:164px; width: 120px; overflow: hidden;"><iframe style="height:1400px; width:900px; zoom: 0.35; -webkit-transform:scale(0.35); margin-top:-470px; margin-left: -300px;" src="/orders/<%= order.id %>"></iframe></div>
+            		<div style="height:240px; width: 120px; overflow: hidden;"><iframe style="height:1400px; width:900px; zoom: 0.5; -webkit-transform:scale(0.5); margin-top:-370px; margin-left: -300px;" src="/orders/<%= order.id %>"></iframe></div>
             		<% end %></td>
             	<td><%= order.model %></td>
             	<td><%= order.quantity %></td>
@@ -39,10 +39,13 @@
 
     </div>
 	</div>
-    <div class="row"><div class="col-md-12"><div class="btn btn-warning btn-sm pull-right" style="margin-top:10px; padding: 3px 10px;">Apply</div><input type="text" class="pull-right" placeholder="Promo code" id="promo-code" style="font-size: 14px; border-radius: 0px; border: 2px solid #eee; margin-top: 10px; margin-bottom: 10px; display:block;"/></div></div>
+    <div class="row">
+        <div class="col-md-12 flatgreen" style="text-align: right;"><%= @discount_tag %></div>
+        <div class="col-md-12"><div class="btn btn-warning btn-sm pull-right" id="promo-button" style="margin-top:10px; padding: 3px 10px;">Apply</div><input type="text" class="pull-right" placeholder="Promo code" id="promo-code" style="font-size: 14px; border-radius: 0px; border: 2px solid #eee; margin-top: 10px; margin-bottom: 10px; display:block;"/></div>
+    </div>
 	<h5 style="text-align:right">
         Shipping (4-6 days): <span style="text-decoration: line-through">$5.00</span> <span class="flatgreen">FREE</span><br></h5>
-	<h4 style="text-align:right">Total: <%= number_to_currency(@cart_total, options = {format: "%u%n", precision: 2}) %><br><br>
+	<h4 style="text-align:right">Total: <%= number_to_currency(@cart_total * @discount, options = {format: "%u%n", precision: 2}) %><br><br>
         
 	<%= form_tag charges_path do %>
 	  <script
@@ -51,8 +54,8 @@
 	    data-key="pk_test_QcvyHZ0UZEHJqCsbOtuHsGTc"
 	    data-image="/images/instacase_small.png"
 	    data-name="Order of <%= @cart_items %> Custom Case(s)"
-	    data-description='Total <%= number_to_currency(@cart_total, options = {format: "%u%n", precision: 2}) %>'
-	    data-amount="<%= @cart_total * 100 %>"
+	    data-description='Total <%= number_to_currency(@cart_total * @discount, options = {format: "%u%n", precision: 2}) %>'
+	    data-amount="<%= (@cart_total * @discount) * 100 %>"
 	    data-shipping-address="true">
 	  </script>
 	<% end %></h4>
