@@ -1,4 +1,8 @@
+// TODO: Andrew, i think you should read up on object oriented programming when you find the time. This file is insane ;)
 $(document).ready(function(){
+
+    // A reference to the last selected object in the canvas
+    var lastSelectedObject = null;
 
 	document.getElementById('image-input').addEventListener('change', newUpload, false);
 
@@ -113,7 +117,17 @@ $(document).ready(function(){
 
 	// Events triggered on object selection
   canvas.on('object:selected', function(options) {
-	  var obj = canvas.getActiveObject();
+	  var obj = lastSelectedObject;
+
+      if (obj && obj.type === 'image') {
+        // Save the filter settings for the deselected image
+        saveSettingsForObject(obj);
+      }
+
+      lastSelectedObject = null;
+
+	  obj = canvas.getActiveObject();
+
 	  console.log(obj);
 	  $('#options-box').removeClass("hidden");
 	  $('#object-box').removeClass("hidden");
@@ -132,6 +146,11 @@ $(document).ready(function(){
 		  		$('#background-box').addClass('hidden');
 		  		$('#font-box').addClass('hidden');
 		  	  $('#image-box').removeClass("hidden");
+
+              lastSelectedObject = obj;
+
+              // Load the filter settings for the selected image
+              loadSettingsForObject(obj);
 		  	  break;
 		  	default:
 		  		$('#clipart-box').addClass('hidden');
@@ -141,7 +160,7 @@ $(document).ready(function(){
 		  	  break;
 		  };
 	  }
-	  catch(err){}
+	  catch(err){} // TODO: wut
 
 	  var index = canvas.getObjects().indexOf(obj);
 	  var numIndex = canvas.getObjects().length - 1;
@@ -187,7 +206,14 @@ $(document).ready(function(){
 
 	// Events triggered on object clear
 	canvas.on('selection:cleared', function(options) {
-	  var obj = canvas.getActiveObject();
+	  var obj = lastSelectedObject;
+
+      if (obj && obj.type === 'image') {
+        // Save the filter settings for the deselected image
+        saveSettingsForObject(obj);
+      }
+
+      lastSelectedObject = null;
 
 	  $('#options-box').addClass("hidden");
 	  $('#object-box').addClass("hidden");
@@ -223,6 +249,62 @@ $(document).ready(function(){
 	});*/
 
 	//canvas.add(phoneCase);
+
+    /**
+     * Load the filter settings for the given object
+     */
+    function loadSettingsForObject(obj) {
+        var settings = obj.filterSettings || {
+            grayscale: false,
+            sepia2: false,
+            sepia: false,
+
+            tint: false,
+            tintIntensity: "#000000",
+            tintOpacity: 0.4,
+
+            brighten: false,
+            brightenIntensity: 100,
+
+            pixelate: false,
+            pixelateIntensity: 4
+        };
+
+        $('#filter-Grayscale').toggleClass('filter-enabled', settings.grayscale);
+        $('#filter-Sepia2').toggleClass('filter-enabled', settings.sepia2);
+        $('#filter-Sepia').toggleClass('filter-enabled', settings.sepia);
+
+        $('#filter-tint-color')[0].checked = settings.tint;
+        $('#filter-tint-color-intensity').val(settings.tintIntensity);
+        $('#filter-tint-color-opacity').val(settings.tintOpacity);
+
+        $('#filter-brighten')[0].checked = settings.brighten;
+        $('#filter-brighten-intensity').val(settings.brightenIntensity);
+
+        $('#filter-pixelate')[0].checked = settings.pixelate;
+        $('#filter-pixelate-intensity').val(settings.pixelateIntensity);
+    }
+
+    /**
+     * Save the filter settings for the given object
+     */
+    function saveSettingsForObject(obj) {
+        obj.filterSettings = {
+            grayscale: $('#filter-Grayscale').hasClass('filter-enabled'),
+            sepia2: $('#filter-Sepia2').hasClass('filter-enabled'),
+            sepia: $('#filter-Sepia').hasClass('filter-enabled'),
+
+            tint: $('#filter-tint-color')[0].checked,
+            tintIntensity: $('#filter-tint-color-intensity').val(),
+            tintOpacity: $('#filter-tint-color-opacity').val(),
+
+            brighten: $('#filter-brighten')[0].checked,
+            brightenIntensity: $('#filter-brighten-intensity').val(),
+
+            pixelate: $('#filter-pixelate')[0].checked,
+            pixelateIntensity: $('#filter-pixelate-intensity').val()
+        }
+    }
 
 	//Upload a new image
 	$('#upload-icon').click(function(){
