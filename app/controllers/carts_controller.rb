@@ -12,7 +12,6 @@ class CartsController < ApplicationController
   def show
 
     @code = params[:code]
-    @admin = params[:admin]
 
     if @code == "REDDIT"
       @discount = 0.75

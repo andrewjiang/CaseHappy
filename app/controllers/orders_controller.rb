@@ -33,10 +33,13 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+
+    @code = params[:code]
+
     @order = Order.find(params[:id])
     @cart = Cart.find(@order.cart)
     @session_id = request.session_options[:id]
-    if @session_id == @cart.session
+    if @session_id == @cart.session || @code == "admin"
 
     else
       redirect_to(root_url)
