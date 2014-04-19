@@ -23,6 +23,9 @@ class ChargesController < ApplicationController
 	    :currency    => 'usd'
 	  )
 
+	  @cart.update_attribute(:session, "Paid")
+	  @cart_items = 0
+
 	rescue Stripe::CardError => e
 	  flash[:error] = e.message
 	  redirect_to charges_path
