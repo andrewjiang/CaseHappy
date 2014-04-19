@@ -4,15 +4,28 @@ class ChargesController < ApplicationController
 	end
 
 	def create
-		@session_id = request.session_options[:id]
-		puts @session_id
-    puts "Thank You Again"
-    
-    @cart = Cart.find_by session: @session_id    
-    @cart.update_attribute(:session, "PAID")
 
-    @cart_items = ""
+    @session_id = request.session_options[:id]
+    @cart = Cart.find_by session: @session_id
 
+	  # Amount in cents
+	  @amount = '%.0f' % (@cart.total * 100)
+
+	  customer = Stripe::Customer.create(
+	    :email => params[:email],
+	    :card  => params[:stripeToken]
+	  )
+
+	  charge = Stripe::Charge.create(
+	    :customer    => customer.id,
+	    :amount      => @amount,
+	    :description => 'New CaseHappy Order',
+	    :currency    => 'usd'
+	  )
+
+	rescue Stripe::CardError => e
+	  flash[:error] = e.message
+	  redirect_to charges_path
 	end
 
 end

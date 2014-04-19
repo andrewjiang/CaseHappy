@@ -33,6 +33,7 @@ class CartsController < ApplicationController
       @orders = Order.where(cart: params[:id])
       @cart_total = @orders.sum("quantity * price")
       @cart_items = @orders.sum("quantity")
+      @cart.update_attribute(:total, @cart_total * @discount)
     else
       redirect_to(root_url) 
     end
