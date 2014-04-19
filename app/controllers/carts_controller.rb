@@ -32,8 +32,8 @@ class CartsController < ApplicationController
 
     if @session_id == @cart.session || @code == "admin"
       @orders = Order.where(cart: params[:id])
-    @cart_total = @orders.sum("quantity * price")
-    @cart_items = @orders.sum("quantity")
+      @cart_total = @orders.sum("quantity * price")
+      @cart_items = @orders.sum("quantity")
     else
       redirect_to(root_url) 
     end
