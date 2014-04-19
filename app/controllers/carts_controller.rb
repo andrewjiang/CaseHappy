@@ -12,6 +12,7 @@ class CartsController < ApplicationController
   def show
 
     @code = params[:code]
+    @admin = params[:admin]
 
     if @code == "REDDIT"
       @discount = 0.75
@@ -28,10 +29,15 @@ class CartsController < ApplicationController
 
     @cart = Cart.find(params[:id])
     @session_id = request.session_options[:id]
-    redirect_to(root_url) unless @session_id == @cart.session
-    @orders = Order.where(cart: params[:id])
+
+    if @session_id == @cart.session || @code == "admin"
+      @orders = Order.where(cart: params[:id])
     @cart_total = @orders.sum("quantity * price")
     @cart_items = @orders.sum("quantity")
+    else
+      redirect_to(root_url) 
+    end
+
   end
 
   def thankyou
