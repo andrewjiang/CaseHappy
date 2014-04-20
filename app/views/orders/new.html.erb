@@ -31,12 +31,11 @@
 					<span class="glyphicon glyphicon-adjust"></span>
 					<div class="hidden-on-mobile control-label">Background Color</div>
 				</button>
-				<button class="control-icon" id="cart-icon">
+				<button class="control-icon" id="order-save">
 					<span class="glyphicon glyphicon-floppy-disk"></span>
-					<div class="hidden-on-mobile control-label" id="order-save">Save + Preview</div>
+					<div class="hidden-on-mobile control-label" >Save + Preview</div>
 				</button>
 			</div>
-
 			<div class="hidden" id="options-box">
 				<button class="object-icon" id="text-remove-icon">
 					<span class="glyphicon glyphicon-remove"></span>
@@ -65,7 +64,6 @@
 					<span class="glyphicon glyphicon-repeat"></span>
 				</button>
 			</div>
-
 			<div class="command-box hidden-on-mobile" id="order-box">
 				<!--form role="form"-->
 					<div class="row">
@@ -291,57 +289,57 @@
 
 		<input type='file' name="files[]" class="hidden" id="image-input" multiple/>
 
-<div class="hidden">
-	<%= form_for(@order) do |f| %>
+		<div class="hidden">
+			<%= form_for(@order) do |f| %>
 
-		<div class="field">
-	    <%= f.label :user %><br>
-	    <% if user_signed_in? %>
-        <%= f.text_field :user, :value => current_user.email %>
-      <% else %>
-        <%= f.text_field :user, :value => @cart.user %>
-      <% end %> 
-	  </div>
-	  <div class="field">
-	    <%= f.label :quantity %><br>
-	    <%= f.number_field :quantity, :value => 1 %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :canvas %><br>
-	    <%= f.text_field :canvas %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :image %><br>
-	    <%= f.text_field :image %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :offset %><br>
-	    <%= f.text_field :offset %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :startW %><br>
-	    <%= f.text_field :startW %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :model %><br>
-	    <%= f.text_field :model, :value => @model %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :price %><br>
-	    <%= f.text_field :price, :value => 20 %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :cart %><br>
-	    <%= f.text_field :cart, :value => @cart.id %>
-	  </div>
+				<div class="field">
+			    <%= f.label :user %><br>
+			    <% if user_signed_in? %>
+		        <%= f.text_field :user, :value => current_user.email %>
+		      <% else %>
+		        <%= f.text_field :user, :value => @cart.user %>
+		      <% end %> 
+			  </div>
+			  <div class="field">
+			    <%= f.label :quantity %><br>
+			    <%= f.number_field :quantity, :value => 1 %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :canvas %><br>
+			    <%= f.text_field :canvas %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :image %><br>
+			    <%= f.text_field :image %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :offset %><br>
+			    <%= f.text_field :offset %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :startW %><br>
+			    <%= f.text_field :startW %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :model %><br>
+			    <%= f.text_field :model, :value => @model %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :price %><br>
+			    <%= f.text_field :price, :value => 20 %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :cart %><br>
+			    <%= f.text_field :cart, :value => @cart.id %>
+			  </div>
 
-	  <div class="actions">
-	    <%= f.submit "new", :id=>"submit-new" %>
-	    <%= f.submit "save", :id=>"submit-save" %>
-	  </div>
-	  <br><br><br><br>
-	<% end %>
-</div>
+			  <div class="actions">
+			    <%= f.submit "new", :id=>"submit-new" %>
+			    <%= f.submit "save", :id=>"submit-save" %>
+			  </div>
+			  <br><br><br><br>
+			<% end %>
+		</div>
 
 		<div id="footer-font">
 			<span style="font-family:'Abril Fatface'">iPhone</span><br>

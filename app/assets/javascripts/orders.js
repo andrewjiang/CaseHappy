@@ -1,20 +1,10 @@
 // TODO: Andrew, i think you should read up on object oriented programming when you find the time. This file is insane ;)
 $(document).ready(function(){
 
-//Align text left
-	$('#promo-button').click(function(){
-		if ($('#promo-code').val()=="REDDIT"){
-			window.location = "?code=REDDIT";
-		} else if ($('#promo-code').val()=="THANKYOU") {
-			window.location = "?code=THANKYOU";
-		} else {
-			alert("Please enter a valid promo code");
-		};
-	});
+  // A reference to the last selected object in the canvas
+  var lastSelectedObject = null;
 
-    // A reference to the last selected object in the canvas
-    var lastSelectedObject = null;
-
+  // start listener for image upload click
 	document.getElementById('image-input').addEventListener('change', newUpload, false);
 
 	$(window).keydown(function(event){
@@ -23,14 +13,6 @@ $(document).ready(function(){
 	    return false;
 	  }
 	});
-
-	if(jQuery.browser.mobile) {
-	 	//window.OverlayImg = '/images/overlay_m.png';
-	 	window.isMobile = true;
-	} else {
-		//window.OverlayImg = '/images/overlay.png';
-		window.isMobile = false;
-	};
 
 	// Resize function on resizing the window
   window.onresize = resizeCanvas;
@@ -96,7 +78,10 @@ $(document).ready(function(){
 	    move: function(color) {
     		var color = color.toRgbString();
     		canvas.item(0).fill = color;
-    		phoneSides.stroke = color;
+    		try{
+    			phoneSides.stroke = color;
+    		}
+    		catch(err){} // TODO: wut
     		canvas.renderAll();
     		console.log(color);
     		$('#outside-edge').css('border-color', color);
@@ -586,24 +571,27 @@ $(document).ready(function(){
 	});
 
 	$('#order-checkout').click(function(event){
-		$('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
+		
 
 		var containerWidth = $('#canvas-container').width();
 
+		$('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
 		$('#order_image').val(canvas.toDataURL({ left:  containerWidth / 2 - canvasOffset - 145, top: 10, width: 290, height: 500 }));
 		$('#order_startW').val(oriContWidth);
+
 		$('#submit-new').click();
 
 	});
 
 	$('#order-save').click(function(event){
 		console.log("save");
-		$('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
-
+		
 		var containerWidth = $('#canvas-container').width();
 
+		$('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
 		$('#order_image').val(canvas.toDataURL({ left:  containerWidth / 2 - canvasOffset - 145, top: 10, width: 290, height: 500 }));
 		$('#order_startW').val(oriContWidth);
+
 		$('#submit-save').click();
 
 	});
