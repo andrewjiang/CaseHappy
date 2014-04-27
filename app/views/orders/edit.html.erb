@@ -28,7 +28,7 @@
 					<span class="glyphicon glyphicon-adjust"></span>
 					<div class="hidden-on-mobile control-label">Background Color</div>
 				</button>
-				<button class="control-icon" id="order-save">
+				<button class="control-icon order-btn" id="order-save">
 					<span class="glyphicon glyphicon-floppy-disk"></span>
 					<div class="hidden-on-mobile control-label">Save + Preview</div>
 				</button>
@@ -95,7 +95,7 @@
 					  </div>
 					</div>
 					<div class="col-xs-12">
-					   <button class="btn btn-primary btn-block btn-lg" id="order-checkout"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</button>
+					   <button class="btn btn-primary btn-block btn-lg order-btn" id="order-checkout"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</button>
 					</div>
 				<!--/form-->
 			</div>
@@ -303,6 +303,10 @@
 	    <%= f.text_field :image %>
 	  </div>
 	  <div class="field">
+	    <%= f.label :big_image %><br>
+	    <%= f.text_field :big_image %>
+	  </div>
+	  <div class="field">
 	    <%= f.label :offset %><br>
 	    <%= f.text_field :offset %>
 	  </div>
@@ -342,4 +346,4 @@
 		</div>
 	</div>
 
-		<div class="hidden-on-mobile" style="border: 1px solid #aaa; height:240px; width: 140px; overflow: hidden; position:absolute; top: 380px; left: 11px;"><iframe style="height:1400px; width:900px; zoom: 0.5; -webkit-transform:scale(0.5); margin-top:-370px; margin-left: -300px;" src="/orders/<%= @order.id %>"></iframe></div>
+		<!--div class="hidden-on-mobile" style="border: 1px solid #aaa; height:240px; width: 140px; overflow: hidden; position:absolute; top: 380px; left: 11px;"><iframe style="height:1400px; width:900px; zoom: 0.5; -webkit-transform:scale(0.5); margin-top:-370px; margin-left: -300px;" src="/orders/<%= @order.id %>"></iframe></div-->

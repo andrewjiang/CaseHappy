@@ -30,9 +30,9 @@ $(document).ready(function(){
 	// Setting canvas Height and setting minimums
   var canvasHeight = $(window).height()-$('#instacase-header').height()-14
   if (canvasHeight > 484){
-  	canvas.setHeight(canvasHeight);
+  	canvas.setHeight(canvasHeight*2);
   } else {
-  	canvas.setHeight(484);
+  	canvas.setHeight(484*2);
   }
 	canvas.setWidth(2000);
 
@@ -571,26 +571,16 @@ $(document).ready(function(){
 	});
 
 	$('#order-checkout').click(function(event){
-		
 
-		var containerWidth = $('#canvas-container').width();
-
-		$('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
-		$('#order_image').val(canvas.toDataURL({ left:  containerWidth / 2 - canvasOffset - 145, top: 10, width: 290, height: 500 }));
-		$('#order_startW').val(oriContWidth);
+		saveOrder()
 
 		$('#submit-new').click();
 
 	});
 
 	$('#order-save').click(function(event){
-		console.log("save");
 		
-		var containerWidth = $('#canvas-container').width();
-
-		$('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
-		$('#order_image').val(canvas.toDataURL({ left:  containerWidth / 2 - canvasOffset - 145, top: 10, width: 290, height: 500 }));
-		$('#order_startW').val(oriContWidth);
+		saveOrder()
 
 		$('#submit-save').click();
 
@@ -651,7 +641,7 @@ $(document).ready(function(){
 
 setTimeout(function(){
 	
-	console.log("First attempt")
+	console.log("First attempt");
 	var obj = canvas.item(0);
 	obj.selectable = false;
 
@@ -671,7 +661,7 @@ setTimeout(function(){
 			}
 
 		oriContWidth = $('#order_startW').val();
-		
+
 		resizeCanvas();
 		canvas.calcOffset();
 		canvas.renderAll();
@@ -952,3 +942,31 @@ function setPrice(value) {
 	$('#order-value').html(total);
 	$('#order_quantity').val(value);
 };
+
+function saveOrder(){
+	var containerWidth = $('#canvas-container').width();
+
+	$('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
+	$('#order_image').val(canvas.toDataURL({ left:  containerWidth / 2 - canvasOffset - 145, top: 10, width: 290, height: 500 }));
+	var objects = canvas.getObjects();
+  for (var i in objects) {
+      var scaleX = objects[i].scaleX;
+      var scaleY = objects[i].scaleY;
+      var left = objects[i].left;
+      var top = objects[i].top;
+      
+      var tempScaleX = scaleX * 2;
+      var tempScaleY = scaleY * 2;
+      var tempLeft = left * 2;
+      var tempTop = top * 2;
+      
+      objects[i].scaleX = tempScaleX;
+      objects[i].scaleY = tempScaleY;
+      objects[i].left = tempLeft;
+      objects[i].top = tempTop;
+      
+      objects[i].setCoords();
+  }
+	$('#order_big_image').val(canvas.toDataURL({ left:  containerWidth - canvasOffset*2 - 290, top: 20, width: 580, height: 1000 }));
+	$('#order_startW').val(oriContWidth);
+}
