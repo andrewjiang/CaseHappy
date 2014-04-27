@@ -13,7 +13,6 @@
 /public/system
 
 # Ignore other unneeded files.
-database.yml
 doc/
 *.swp
 *~
@@ -24,3 +23,7 @@ doc/
 
 # Ignore IDE files
 *.iml
+
+# Ignore config files
+database.yml
+environment.yml

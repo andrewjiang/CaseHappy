@@ -1,0 +1,9 @@
+development:
+  #AWS
+  access_key_id: derp
+  secret_access_key: herp
+
+  #Stripe
+  publishable_key: derp
+  secret_key: herp
+
