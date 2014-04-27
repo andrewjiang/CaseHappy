@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.0'
 
-gem 'rails', '4.0.2'
-gem 'bootstrap-sass', '~> 3.1.1'
+gem 'rails', '4.1.0'
+gem 'bootstrap-sass', '~> 3.1.1.1'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'devise', '~> 3.2'
 gem 'activeadmin', github: 'gregbell/active_admin'
-gem 'actionmailer', '4.0.2'
+gem 'actionmailer', '4.1.0'
 gem 'delayed_job_active_record'
 gem "daemons"
 gem "mail_view", "~> 1.0.3"
@@ -26,7 +26,7 @@ group :test do
   gem 'capybara', '2.1.0'
 end
 
-gem 'sass-rails', '4.0.1'
+gem 'sass-rails', '4.0.3'
 gem 'uglifier', '2.1.1'
 gem 'jquery-rails', '3.0.4'
 gem 'turbolinks', '1.1.1'
