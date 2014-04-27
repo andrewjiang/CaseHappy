@@ -21,3 +21,6 @@ doc/
 .DS_Store
 .idea
 .secret
+
+# Ignore IDE files
+*.iml
