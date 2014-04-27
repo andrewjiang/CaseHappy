@@ -637,7 +637,11 @@ $(document).ready(function(){
 		  strokeWidth: 50,
 		  stroke: 'white',
 		});
+
 		canvas.add(phoneBkg);
+		
+		canvas.renderAll();
+
 		$('#order_startW').val(oriContWidth);
 	};
 
