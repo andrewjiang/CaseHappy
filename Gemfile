@@ -3,7 +3,7 @@ ruby '2.1.1'
 
 gem 'rails', '4.1.0'
 gem 'bootstrap-sass', '~> 3.1.1.1'
-gem 'paperclip'
+gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'aws-sdk'
 gem 'devise', '~> 3.2'
 gem 'activeadmin', github: 'gregbell/active_admin'

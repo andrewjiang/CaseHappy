@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427231208) do
+ActiveRecord::Schema.define(version: 20140428010718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 20140427231208) do
     t.string   "user"
     t.string   "session"
     t.float    "total"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "images", force: true do |t|
+    t.string   "payload_file_name"
+    t.string   "payload_content_type"
+    t.integer  "payload_file_size"
+    t.datetime "payload_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
