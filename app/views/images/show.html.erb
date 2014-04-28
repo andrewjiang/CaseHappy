@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag @image.payload.url(:thumb) %>
+<%= image_tag @image.payload.url(:medium) %>
+<%= image_tag @image.payload.url(:original) %>
+
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>
