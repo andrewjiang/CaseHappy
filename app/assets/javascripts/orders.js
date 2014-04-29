@@ -78,10 +78,10 @@ $(document).ready(function(){
 	    move: function(color) {
     		var color = color.toRgbString();
     		canvas.item(0).fill = color;
-    		try{
+    		/*try{
     			phoneSides.stroke = color;
     		}
-    		catch(err){} // TODO: wut
+    		catch(err){} // TODO: wut */
     		canvas.renderAll();
     		console.log(color);
     		$('#outside-edge').css('border-color', color);
@@ -414,14 +414,14 @@ $(document).ready(function(){
 	//See outside edges / don't print
 	$('#order-edges').click(function(){
 
-		if (this.checked){
+		/*if (this.checked){
 			phoneSides.stroke = phoneBkg.fill;
 			canvas.add(phoneSides);
 
 		} else {
 			canvas.remove(phoneSides);
-		}
-
+		}*/
+		
 	});
 
 	// Object mpve to front / back options
@@ -612,7 +612,7 @@ $(document).ready(function(){
 		  ry: 66,
 		  selectable: false,
 		});
-		window.phoneSides = new fabric.Rect({
+/*		window.phoneSides = new fabric.Rect({
 		  originY: "top",
 		  originX: "center",
 		  left: containerWidth / 2,
@@ -625,7 +625,7 @@ $(document).ready(function(){
 		  selectable: false,
 		  strokeWidth: 50,
 		  stroke: 'white',
-		});
+		}); */
 
 		canvas.add(phoneBkg);
 

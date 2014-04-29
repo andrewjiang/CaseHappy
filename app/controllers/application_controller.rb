@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def set_cart
 		@session_id = request.session_options[:id]
 		puts @session_id
-		@cart = Cart.find_by session: @session_id
+		@cart = Cart.where(session: @session_id, paid: nil).take
 		if @cart == nil
 			puts current_user
 			puts "Nil"

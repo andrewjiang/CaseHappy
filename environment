@@ -1,0 +1,32 @@
+Running `rake db:migrate =` attached to terminal... up, run.2625
+rake aborted!
+Errno::ENOENT: No such file or directory @ rb_sysopen - /app/config/environment.yml
+/app/config/initializers/local_environment.rb:2:in `<top (required)>'
+/app/vendor/bundle/ruby/2.1.0/gems/activesupport-4.1.0/lib/active_support/dependencies.rb:241:in `load'
+/app/vendor/bundle/ruby/2.1.0/gems/activesupport-4.1.0/lib/active_support/dependencies.rb:241:in `block in load'
+/app/vendor/bundle/ruby/2.1.0/gems/activesupport-4.1.0/lib/active_support/dependencies.rb:232:in `load_dependency'
+/app/vendor/bundle/ruby/2.1.0/gems/activesupport-4.1.0/lib/active_support/dependencies.rb:241:in `load'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/engine.rb:648:in `block in load_config_initializer'
+/app/vendor/bundle/ruby/2.1.0/gems/activesupport-4.1.0/lib/active_support/notifications.rb:161:in `instrument'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/engine.rb:647:in `load_config_initializer'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/engine.rb:612:in `block (2 levels) in <class:Engine>'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/engine.rb:611:in `each'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/engine.rb:611:in `block in <class:Engine>'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/initializable.rb:30:in `instance_exec'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/initializable.rb:30:in `run'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/initializable.rb:55:in `block in run_initializers'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/initializable.rb:44:in `each'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/initializable.rb:44:in `tsort_each_child'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/initializable.rb:54:in `run_initializers'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/application.rb:288:in `initialize!'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/railtie.rb:194:in `public_send'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/railtie.rb:194:in `method_missing'
+/app/config/environment.rb:5:in `<top (required)>'
+/app/vendor/bundle/ruby/2.1.0/gems/activesupport-4.1.0/lib/active_support/dependencies.rb:247:in `require'
+/app/vendor/bundle/ruby/2.1.0/gems/activesupport-4.1.0/lib/active_support/dependencies.rb:247:in `block in require'
+/app/vendor/bundle/ruby/2.1.0/gems/activesupport-4.1.0/lib/active_support/dependencies.rb:232:in `load_dependency'
+/app/vendor/bundle/ruby/2.1.0/gems/activesupport-4.1.0/lib/active_support/dependencies.rb:247:in `require'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/application.rb:264:in `require_environment!'
+/app/vendor/bundle/ruby/2.1.0/gems/railties-4.1.0/lib/rails/application.rb:367:in `block in run_tasks_blocks'
+Tasks: TOP => db:migrate => environment
+(See full trace by running task with --trace)

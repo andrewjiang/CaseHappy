@@ -23,8 +23,8 @@ class ChargesController < ApplicationController
 	    :currency    => 'usd'
 	  )
 
-	  @cart.update_attribute(:session, "Paid")
-	  @cart_items = 0
+	  @cart.update_attribute(:paid, true)
+	  @cart_items = ""
 
 	rescue Stripe::CardError => e
 	  flash[:error] = e.message

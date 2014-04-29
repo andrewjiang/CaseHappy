@@ -12,6 +12,10 @@ Casehappy::Application.routes.draw do
 
   get '/choose' => 'pages#choose'
 
+  get '/orders/:id/clone' => 'orders#clone'
+
+  get '/popular' => 'pages#popular'
+
   post '/carts/charge/:id' => 'carts#thankyou'
   get '/carts/charge/:id' => 'carts#thankyou'
 
