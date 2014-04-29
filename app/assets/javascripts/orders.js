@@ -87,7 +87,6 @@ $(document).ready(function(){
     		$('#outside-edge').css('border-color', color);
 			}
 
-			
 	});
 
   // Adding clipart on clicks
@@ -175,21 +174,21 @@ $(document).ready(function(){
 	  	$('#move-up-icon').addClass("hidden");
 	  	$('#move-down-icon').addClass("hidden");
 	  };
-	  
+
 	  moveButtons();
 
 	});
 
 	// Events triggered on object rotation
 	canvas.on('object:rotating', function(options) {
-	  
+
 	  moveButtons();
 
 	});
 
 	// Events triggered on object modification
 	canvas.on('object:modified', function(options) {
-	  
+
 	  moveButtons();
 
 	});
@@ -236,7 +235,7 @@ $(document).ready(function(){
 	  originY: "top",
 	  originX: "center",
 	  left: containerWidth / 2,
-    top: 20,  
+    top: 20,
 	  fill: 'white',
 	  width: 250,
 	  height: 460,
@@ -315,9 +314,9 @@ $(document).ready(function(){
 
 	//Add text
 	$('#text-icon').click(function(){
-		
+
 		var containerWidth = $('#canvas-container').width();
-		var text = new fabric.Text("", { 
+		var text = new fabric.Text("", {
 			left: containerWidth/2 - canvasOffset,
 			top: 240,
 			fontFamily: "Lato",
@@ -348,7 +347,7 @@ $(document).ready(function(){
 
 	//Align text left
 	$('#align-left').click(function(){
-		var obj = canvas.getActiveObject(); 
+		var obj = canvas.getActiveObject();
 		obj.textAlign = "left";
 		canvas.renderAll();
 		getFontInfo();
@@ -359,7 +358,7 @@ $(document).ready(function(){
 
 	//Align text center
 	$('#align-center').click(function(){
-		var obj = canvas.getActiveObject(); 
+		var obj = canvas.getActiveObject();
 		obj.textAlign = "center";
 		canvas.renderAll();
 		getFontInfo();
@@ -370,7 +369,7 @@ $(document).ready(function(){
 
 	//Align text right
 	$('#align-right').click(function(){
-		var obj = canvas.getActiveObject(); 
+		var obj = canvas.getActiveObject();
 		obj.textAlign = "right";
 		canvas.renderAll();
 		getFontInfo();
@@ -381,7 +380,7 @@ $(document).ready(function(){
 
 	//Select font family
 	$('#font-selector').change(function(){
-		var obj = canvas.getActiveObject(); 
+		var obj = canvas.getActiveObject();
 		$('#font-textarea').css('font-family', $('#font-selector').val());
 		obj.fontFamily = $('#font-selector').val();
 		canvas.renderAll();
@@ -418,11 +417,11 @@ $(document).ready(function(){
 		if (this.checked){
 			phoneSides.stroke = phoneBkg.fill;
 			canvas.add(phoneSides);
-			
+
 		} else {
 			canvas.remove(phoneSides);
 		}
-		
+
 	});
 
 	// Object mpve to front / back options
@@ -561,7 +560,7 @@ $(document).ready(function(){
 		$('#background-box').addClass('hidden');
   });
 
- 	
+
 
 	// Order Options
 
@@ -579,7 +578,7 @@ $(document).ready(function(){
 	});
 
 	$('#order-save').click(function(event){
-		
+
 		saveOrder()
 
 		$('#submit-save').click();
@@ -594,7 +593,7 @@ $(document).ready(function(){
 		} else{
 			$('#order-quantity').val($('#order_quantity').val());
 		}
-		
+
 	  setPrice($('#order_quantity').val());
 
 		canvas.renderAll();
@@ -605,7 +604,7 @@ $(document).ready(function(){
 		  originY: "top",
 		  originX: "center",
 		  left: containerWidth / 2,
-	    top: 10,  
+	    top: 10,
 		  fill: 'white',
 		  width: 290,
 		  height: 500,
@@ -617,7 +616,7 @@ $(document).ready(function(){
 		  originY: "top",
 		  originX: "center",
 		  left: containerWidth / 2,
-	    top: 0,  
+	    top: 0,
 		  fill: 'rgba(0,0,0,0)',
 		  width: 260,
 		  height: 470,
@@ -629,7 +628,7 @@ $(document).ready(function(){
 		});
 
 		canvas.add(phoneBkg);
-		
+
 		canvas.renderAll();
 
 		$('#order_startW').val(oriContWidth);
@@ -640,14 +639,14 @@ $(document).ready(function(){
 });
 
 setTimeout(function(){
-	
+
 	console.log("First attempt");
 	var obj = canvas.item(0);
 	obj.selectable = false;
 
 	if (obj){
 		for (var i=1;i<canvas.getObjects().length;i++)
-			{ 
+			{
 				var obj = canvas.item(i);
 				obj.set({
 					transparentCorners: true,
@@ -686,7 +685,7 @@ setTimeout(function(){
 				});
 
 				oriContWidth = $('#order_startW').val();
-				
+
 				resizeCanvas();
 				canvas.calcOffset();
 				canvas.renderAll();
@@ -709,7 +708,7 @@ setTimeout(function(){
 						});
 
 						oriContWidth = $('#order_startW').val();
-						
+
 						resizeCanvas();
 						canvas.calcOffset();
 						canvas.renderAll();
@@ -769,17 +768,34 @@ function newUpload(evt) {
 			image.set({
 				scaleY: 260 / (image.width),
     		scaleX: 260/ (image.width),
-			});			
+			});
 			canvas.add(image);
 			image.setCoords();
 			canvas.setActiveObject(image);
-		
+
 		}
 	$("#image-input").val('');
 	}
 	reader.readAsDataURL(evt.target.files[0]);
-	
+	uploadFile(evt.target.files[0]);
 };
+
+function uploadFile(file) {
+    formData = new FormData();
+    formData.append('image[payload]', file);
+    $.ajax({
+        type: 'POST',
+        url: '/images',
+        data: formData,
+        processData: false,
+        contentType: false
+    }).done(fileUploaded);
+}
+
+function fileUploaded() {
+    console.log(arguments);
+}
+
 function moveButtons(){
 	var obj = canvas.getActiveObject();
 	var	rX = (obj.currentWidth / 2);
@@ -872,7 +888,7 @@ function getFontInfo(){
 	document.getElementById('color-selector').color.fromString(hexcolor);*/
 
 	$('#font-selector').val(family);
-	
+
 	switch(align)
 	{
 		case "left":
@@ -954,17 +970,17 @@ function saveOrder(){
       var scaleY = objects[i].scaleY;
       var left = objects[i].left;
       var top = objects[i].top;
-      
+
       var tempScaleX = scaleX * 2;
       var tempScaleY = scaleY * 2;
       var tempLeft = left * 2;
       var tempTop = top * 2;
-      
+
       objects[i].scaleX = tempScaleX;
       objects[i].scaleY = tempScaleY;
       objects[i].left = tempLeft;
       objects[i].top = tempTop;
-      
+
       objects[i].setCoords();
   }
 	$('#order_big_image').val(canvas.toDataURL({ left:  containerWidth - canvasOffset*2 - 290, top: 20, width: 580, height: 1000 }));

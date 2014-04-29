@@ -15,9 +15,9 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
 
     if @image.save
-      redirect_to @image, notice: 'Image was successfully created.'
+      render :json => { :url => @image.payload.url(:original), :thumbnail_url => @image.payload.url(:thumb) }
     else
-      render :new
+      render :json => { :error => 'Image failed to upload!' }
     end
   end
 
