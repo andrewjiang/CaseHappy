@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :edit, :update, :destroy]
+  before_action :set_image, only: [:show, :destroy]
 
   # GET /images
   def index
@@ -10,15 +10,6 @@ class ImagesController < ApplicationController
   def show
   end
 
-  # GET /images/new
-  def new
-    @image = Image.new
-  end
-
-  # GET /images/1/edit
-  def edit
-  end
-
   # POST /images
   def create
     @image = Image.new(image_params)
@@ -27,15 +18,6 @@ class ImagesController < ApplicationController
       redirect_to @image, notice: 'Image was successfully created.'
     else
       render :new
-    end
-  end
-
-  # PATCH/PUT /images/1
-  def update
-    if @image.update(image_params)
-      redirect_to @image, notice: 'Image was successfully updated.'
-    else
-      render :edit
     end
   end
 
