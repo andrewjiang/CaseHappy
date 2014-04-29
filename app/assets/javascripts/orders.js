@@ -739,48 +739,56 @@ setTimeout(function(){
 
 
 function newUpload(evt) {
-	var reader = new FileReader();
-	var containerWidth = $('#canvas-container').width();
-	reader.onload = function(event) { console.log ('loading reader');
-		var imgObj = new Image()
+    var reader = new FileReader();
+    var containerWidth = $('#canvas-container').width();
+    reader.onload = function (event) {
+        console.log('loading reader');
+        var imgObj = new Image();
 
-		imgObj.src = event.target.result;
-		imgObj.onload = function(){
-			// start fabricJS stuff
+        imgObj.src = event.target.result;
+        imgObj.onload = function () {
+            // start fabricJS stuff
 
-			var image = new fabric.Image(imgObj);
-			image.set({
-				originX: 'center',
-				originY: 'center',
-				left: containerWidth/2 - canvasOffset,
-				top: 240,
-				offLeft: 0,
-				offTop: 0,
-				angle: 0,
-    		transparentCorners: true,
-    		hasBorders: false,
-    		lockUniScaling: true,
-    		hasCorners: false,
-    		borderColor: 'rgba(0,0,0,0)',
-  			cornerColor: 'rgba(0,0,0,0)',
-    		cornerSize: 20,
-			});
-			image.set({
-				scaleY: 260 / (image.width),
-    		scaleX: 260/ (image.width),
-			});
-			canvas.add(image);
-			image.setCoords();
-			canvas.setActiveObject(image);
+            var image = new fabric.Image(imgObj);
+            image.set({
+                originX: 'center',
+                originY: 'center',
+                left: containerWidth / 2 - canvasOffset,
+                top: 240,
+                offLeft: 0,
+                offTop: 0,
+                angle: 0,
+                transparentCorners: true,
+                hasBorders: false,
+                lockUniScaling: true,
+                hasCorners: false,
+                borderColor: 'rgba(0,0,0,0)',
+                cornerColor: 'rgba(0,0,0,0)',
+                cornerSize: 20
+            });
+            image.set({
+                scaleY: 260 / (image.width),
+                scaleX: 260 / (image.width)
+            });
+            canvas.add(image);
+            image.setCoords();
+            canvas.setActiveObject(image);
 
-		}
-	$("#image-input").val('');
-	}
-	reader.readAsDataURL(evt.target.files[0]);
-	uploadFile(evt.target.files[0]);
-};
+            // upload dat file in the background
+            uploadFile(this, image);
+        }.bind(this);
+        $("#image-input").val('');
+    }.bind(evt.target.files[0]); // Set context to the file to be uploaded
+    reader.readAsDataURL(evt.target.files[0]);
+}
 
-function uploadFile(file) {
+/**
+ * Upload an image in the background and then replace the Fabric image with the S3 image
+ * @param {File} file the image
+ * @param {fabric.Image} fabricImage
+ */
+function uploadFile(file, fabricImage) {
+    // Send as form data... because you can't XHR multipart data directly
     formData = new FormData();
     formData.append('image[payload]', file);
     $.ajax({
@@ -789,11 +797,27 @@ function uploadFile(file) {
         data: formData,
         processData: false,
         contentType: false
-    }).done(fileUploaded);
+    }).done(fileUploaded.bind(fabricImage)).fail(function () {/* TODO: show some sort of notification */});
 }
 
-function fileUploaded() {
-    console.log(arguments);
+/**
+ * Callback when an image has been uploaded. Replaces the fabricJS image on the canvas with the shiny new uploaded image
+ * @param {Object} urls object containing urls to original size and thumbnail images
+ * @this fabric.Image a reference to the fabricJS image element to replace
+ */
+function fileUploaded(urls) {
+    if (urls.error) {
+        // TODO: show some sort of notification
+        console.error(urls.error);
+        return;
+    }
+
+    var image = new Image();
+    image.crossOrigin = 'anonymous';
+    image.onload = function () {
+        this.setElement(image);
+    }.bind(this);
+    image.src = urls.url;
 }
 
 function moveButtons(){
