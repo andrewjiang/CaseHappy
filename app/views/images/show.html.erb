@@ -1,0 +1,6 @@
+<%= image_tag @image.payload.url(:thumb) %>
+<%= image_tag @image.payload.url(:medium) %>
+<%= image_tag @image.payload.url(:original) %>
+<p style="margin: 250px">
+    <%= link_to 'DESTROY ALL HUMANS!!', @image, method: :delete, data: { confirm: 'Are you sure?' } %>
+</p>

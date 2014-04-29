@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20140428035155) do
     t.boolean  "paid"
   end
 
+  create_table "images", force: true do |t|
+    t.string   "payload_file_name"
+    t.string   "payload_content_type"
+    t.integer  "payload_file_size"
+    t.datetime "payload_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "orders", force: true do |t|
     t.string   "user"
     t.integer  "quantity"

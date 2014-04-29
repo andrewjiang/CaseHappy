@@ -1,9 +1,9 @@
 development:
   #AWS
-  access_key_id: derp
-  secret_access_key: herp
+  aws_access_key_id: derp
+  aws_secret_access_key: herp
 
   #Stripe
-  publishable_key: derp
-  secret_key: herp
+  stripe_publishable_key: derp
+  stripe_secret_key: herp
 
