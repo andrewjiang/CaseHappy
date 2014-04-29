@@ -16,7 +16,7 @@ class PagesController < ApplicationController
   		@orders = Order.where(share: true, user: 'editor').order('created_at').limit(8)
   		@editor = "active"
   	else
-  		@orders = Order.where(share: true).limit(8)
+  		@orders = Order.where(share: true).order('updated_at ASC').limit(8)
   		@popular = "active"
   	end
 
@@ -24,4 +24,4 @@ class PagesController < ApplicationController
 
 
 
-end
+end 
