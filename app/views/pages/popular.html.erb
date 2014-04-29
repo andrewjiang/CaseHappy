@@ -1,0 +1,38 @@
+<script>
+	mixpanel.track("Visited Popular");
+</script>
+	<div class="container-fluid" id="popular-bar">
+		<ul class="nav nav-pills">
+		  <li class="<%= @popular %>"><a href="/popular"><h3 class="thin-font popular-pills">Popular</h3></a></li>
+		  <li class="<%= @latest %>"><a href="/popular?by=latest"><h3 class="thin-font popular-pills">Latest</h3></a></li>
+		  <li class="<%= @editor %>"><a href="/popular?by=editor"><h3 class="thin-font popular-pills">Editor's Picks</h3></a></li>
+		</ul>
+	</div>
+	<div class="container-fluid" style="background-color:whitesmoke">
+		<div class="row" style="padding:10px;">
+			<% @orders.each do |order| %>
+				<div class="col-md-3" style="position:relative;">
+			
+					<div class="popular-display"><iframe style="height:1400px; width:900px; zoom: 1; -webkit-transform:scale(1); margin-top:-0px; margin-left: -80px; border:none;" src="/orders/<%= order.id %>"></iframe>
+					</div>
+					<div class="action-buttons" style="position:absolute; top:25px; right:20px;">
+						<button class="action-button love">
+							<span style="margin-left:-5px !important;" class="glyphicon glyphicon-heart"></span>
+							<span style="color:inherit; position: absolute; font-size: 18px; top:23px; left:14px; text-align:center;" ><%= order.popularity %></span>
+						</button>
+						<button class="action-button facebook"><i class="fa fa-facebook-square"></i></button>
+						<button class="action-button twitter"><i class="fa fa-twitter"></i></button>
+						<button class="action-button pinterest"><i class="fa fa-pinterest-square"></i></button>
+						<a href="/orders/<%= order.id %>/clone" do %>
+							<button class="action-button buy"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+						</a>
+					</div>
+				</div>
+			<% end %>
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+	</div>
+

@@ -221,8 +221,8 @@ a:hover{
 	font-family: "Lobster";
 	font-weight: 700;
 	color: #f39c12;
-	-webkit-text-stroke-width: 0.02em;
-   -webkit-text-stroke-color: #f39c12;
+	-webkit-text-stroke-width: 0.01em;
+   -webkit-text-stroke-color: #e67e22;
 }
 .instacase-brand:hover{
 	color: #e67e22
@@ -701,6 +701,14 @@ a:hover{
 		color: #FAFBFC;
 		border-top: 1px solid #222;
 	}
+	#insta-footer.clear{
+		position: fixed;
+		background-color: transparent;
+		width: 100%;
+		height: 72px;
+		color: #FAFBFC;
+		border-top: none;
+	}
 	#insta-footer.non-stick{
 		position: relative;
 	}
@@ -727,12 +735,6 @@ a:hover{
 	}
 	#insta-footer-buttons .col-xs-3.selected{
 		background-color: #333;
-	}
-	#footer-company{
-		padding-top: 10px;
-		text-align: center;
-		font-weight: 300;
-		color: #777;
 	}
 	#footer-company{
 		padding-top: 10px;
@@ -1124,12 +1126,128 @@ ul.nav {
 			width: 33%;
 		}
 	}
-/* Choose Phone */
+/* Choose Phone & Popular Page*/
 	
+	#popular-bar{
+		background-color: #2a2a2a;
+		font-family: 'Helvetica Neue';
+	}
+	#popular-bar .nav-pills li{
+		background-color: #2a2a2a;
+	}
+	#popular-bar .nav-pills li a{
+		color: #aaa;
+	}
+	#popular-bar .nav-pills li.active a{
+		background-color: #2a2a2a;
+		color: #fff;
+		font-weight: 700;
+	}
+	#popular-bar .nav-pills li a:hover{
+		background-color: #2a2a2a;
+		color: #fff;
+	}
+	.action-button{
+		transition: background-color 0.5s ease;
+		border: transparent;
+		display: block;
+		width: 50px;
+		color: #fff;
+		margin-bottom: 6px;
+		text-align: center;
+	}
+	.action-button.love{
+
+		font-size: 46px;
+		padding-left: 0px;
+		padding-right: 0px;
+		line-height: 0px;
+		background-color: rgba(0,0,0,0.2);
+		border-radius: 4px;
+		color: #fff;
+	}
+	.action-button.facebook, .action-button.twitter, .action-button.pinterest{
+		font-size: 22px;
+		line-height: 0px;
+		background-color: rgba(0,0,0,0.2);
+		border-radius: 4px;
+		padding-top: 4px;
+	}
+	.action-button.love:hover{
+		background-color: rgba(231, 76, 60, 0.8);
+		opacity: 1;
+	}
+	.action-button.love.clicked{
+		transition: color 0.5s ease;
+		color: rgba(255, 116, 100, 1);
+		background-color: rgba(231, 76, 60, 1);
+	}
+	.action-button.love.clicked:hover{
+		transition: color 0.5s ease;
+		color: rgba(255, 116, 100, 1);
+		background-color: rgba(231, 76, 60, 1);
+	}
+	.action-button.facebook:hover{
+		background-color: #3b5998;
+		opacity: 1;
+	}
+	.action-button.twitter:hover{
+		background-color: #55ACEE;
+		opacity: 1;
+		
+	}
+	.action-button.pinterest:hover{
+		background-color: #e85061;
+		opacity: 1;
+	}
+	.action-button.buy{
+		border-color: #7ab008 #76a80d #779539;
+		background: #82b809;
+		background: -o-linear-gradient(top, #b4d679 2%, #8dc035 8%, #82b809 58%, #82b809 95%, #7ab008);
+		background: -ms-linear-gradient(top, #b4d679 2%, #8dc035 8%, #82b809 58%, #82b809 95%, #7ab008);
+		background: -moz-linear-gradient(top, #b4d679 2%, #8dc035 8%, #82b809 58%, #82b809 95%, #7ab008);
+		background: -webkit-linear-gradient(top, #b4d679 2%, #8dc035 8%, #82b809 58%, #82b809 95%, #7ab008);
+		background: linear-gradient(top, #b4d679 2%, #8dc035 8%, #82b809 58%, #82b809 95%, #7ab008);
+		padding: 5px 0px 1px;
+		border: 1px solid;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		color: #FFF;
+		text-decoration: none;
+		font-family: Arial,Helvetica,sans-serif;
+		font-size: 24px;
+		font-weight: bold;
+		cursor: pointer;
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+		line-height: normal;
+		text-align: center;
+	}
+	.popular-display{
+		height:500px; 
+		width: 100%; 
+		overflow: hidden; 
+		border: 1px solid rgba(52, 73, 94,0);
+		margin-bottom: 20px;
+	}
+	.action-buttons{
+		opacity: 0;
+	}
+	.action-buttons:hover{
+    opacity: 1;
+	}
+	.popular-display:hover + .action-buttons{
+		transition: opacity 0.5s ease;
+    opacity: 1;
+	}
 	@media (min-width: 768px){
 		.insta-title{
 			padding: 20px;
 			font-size: 38px;
+		}
+		.popular-pills{
+			padding: 0px 6px 4px;
+			font-size: 24px;
 		}
 	}
 

@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :clone]
 
   # GET /orders
   # GET /orders.json
@@ -16,13 +16,12 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @cart = Cart.find(@order.cart)
     @session_id = request.session_options[:id]
-    if @session_id == @cart.session || @code == "admin"
+    if @session_id == @cart.session || @code == "admin" || @order.share == true
       render layout: 'display'
     else
       redirect_to(root_url)
     end
 
-    
   end
 
   # GET /orders/new
@@ -68,6 +67,23 @@ class OrdersController < ApplicationController
     end
   end
 
+  def clone
+
+    @cart = Cart.where(session: @session_id, paid: nil).take
+
+    @order = Order.find(params[:id])
+
+    @neworder = @order.dup
+
+    @neworder.share = false
+    @neworder.cart = @cart.id
+
+    @neworder.save
+
+    redirect_to edit_order_path(@neworder)
+
+  end
+
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
@@ -108,6 +124,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:user, :quantity, :canvas, :model, :offset, :startW, :image, :big_image, :cart, :price)
+      params.require(:order).permit(:user, :quantity, :canvas, :model, :offset, :startW, :image, :big_image, :cart, :price, :share, :popularity)
     end
 end

@@ -8,4 +8,9 @@ $(document).ready(function(){
 			alert("Please enter a valid promo code");
 		};
 	});
+
+	$('.action-button.love').click(function(event){
+		$(this).toggleClass('clicked')
+	});
+
 });

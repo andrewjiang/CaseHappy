@@ -13,20 +13,22 @@ class CartsController < ApplicationController
 
     @code = params[:code]
 
+    @cart = Cart.find(params[:id])
+
     if @code == "REDDIT"
       @discount = 0.75
       @discount_tag = "REDDIT discount applied (25% off!)"
     elsif @code == "THANKYOU"
-      @discount = 0.50
-      @discount_tag = "THANKS for the feedback (50% off!)"
+      @discount = 0.75
+      @discount_tag = "THANKS for the feedback (25% off!)"
     else
       puts 'Nil'
       @discount = 1
       @discount_tag = ""
     end
 
+    @cart.update_attribute(:discount, 1 - @discount)
 
-    @cart = Cart.find(params[:id])
     @session_id = request.session_options[:id]
 
     if @session_id == @cart.session || @code == "admin"
@@ -37,16 +39,6 @@ class CartsController < ApplicationController
     else
       redirect_to(root_url) 
     end
-
-  end
-
-  def thankyou
-    puts "Thank You Again"
-    
-    @cart = Cart.find(params[:id])
-    puts @cart.id
-    
-    @cart.update_attribute(:session, "PAID")
 
   end
 
@@ -110,7 +102,7 @@ class CartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
-      params.require(:cart).permit(:user, :session, :total)
+      params.require(:cart).permit(:user, :session, :total, :discount, :paid)
     end
 
 end
