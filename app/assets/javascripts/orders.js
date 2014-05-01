@@ -1,8 +1,12 @@
+casehappy = window.casehappy || {};
+
 // TODO: Andrew, i think you should read up on object oriented programming when you find the time. This file is insane ;)
 $(document).ready(function(){
 
   // A reference to the last selected object in the canvas
   var lastSelectedObject = null;
+
+  casehappy.numberOfUploads = 0;
 
   // start listener for image upload click
 	document.getElementById('image-input').addEventListener('change', newUpload, false);
@@ -571,17 +575,13 @@ $(document).ready(function(){
 
 	$('#order-checkout').click(function(event){
 
-		saveOrder()
-
-		$('#submit-new').click();
+		saveOrder('new');
 
 	});
 
 	$('#order-save').click(function(event){
 
-		saveOrder()
-
-		$('#submit-save').click();
+		saveOrder('save');
 
 	});
 
@@ -788,6 +788,7 @@ function newUpload(evt) {
  * @param {fabric.Image} fabricImage
  */
 function uploadFile(file, fabricImage) {
+    uploadStarted();
     // Send as form data... because you can't XHR multipart data directly
     formData = new FormData();
     formData.append('image[payload]', file);
@@ -797,7 +798,12 @@ function uploadFile(file, fabricImage) {
         data: formData,
         processData: false,
         contentType: false
-    }).done(fileUploaded.bind(fabricImage)).fail(function () {/* TODO: show some sort of notification */});
+    }).done(fileUploaded.bind(fabricImage)).fail(function () {
+        /*
+         TODO: show some sort of notification... maybe retry... we really don't want to let people save raw image data
+         */
+        uploadCompleted();
+    });
 }
 
 /**
@@ -818,6 +824,19 @@ function fileUploaded(urls) {
         this.setElement(image);
     }.bind(this);
     image.src = urls.url;
+
+    uploadCompleted();
+}
+
+function uploadStarted() {
+    casehappy.numberOfUploads++;
+    $('.order-btn').addClass('disabled');
+}
+
+function uploadCompleted() {
+    if (--casehappy.numberOfUploads <= 0) {
+        $('.order-btn').removeClass('disabled');
+    }
 }
 
 function moveButtons(){
@@ -983,7 +1002,12 @@ function setPrice(value) {
 	$('#order_quantity').val(value);
 };
 
-function saveOrder(){
+function saveOrder(submit){
+    // Disallow saving if images are still uploading
+    if (casehappy.numberOfUploads > 0) {
+        return;
+    }
+
 	var containerWidth = $('#canvas-container').width();
 
 	$('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
@@ -1009,4 +1033,10 @@ function saveOrder(){
   }
 	$('#order_big_image').val(canvas.toDataURL({ left:  containerWidth - canvasOffset*2 - 290, top: 20, width: 580, height: 1000 }));
 	$('#order_startW').val(oriContWidth);
+
+    if (submit === 'new') {
+        $('#submit-new').click();
+    } else if (submit === 'save') {
+        $('#submit-save').click();
+    }
 }
