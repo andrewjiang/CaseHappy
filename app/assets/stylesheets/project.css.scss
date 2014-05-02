@@ -626,7 +626,6 @@ a:hover {
   box-shadow: 0px 0px 0px 10000px rgba(235, 235, 235, 0.8) !important;
   -moz-box-shadow: 0px 0px 0px 10000px rgba(235, 235, 235, 0.8) !important;
   -webkit-box-shadow: 0px 0px 0px 10000px rgba(235, 235, 235, 0.8) !important;
-
 }
 
 #inside-border {
@@ -667,6 +666,21 @@ a:hover {
   left: 50%;
   margin-left: -145px;
   pointer-events: none;
+}
+
+#outside-instructions{
+  position: absolute;
+  top: 510px;
+  left: 50%;
+  margin-left: -68px;
+}
+
+#inside-instructions{
+  position: absolute;
+  top: 470px;
+  left: 50%;
+  margin-left: -34px;
+  font-weight: 500;
 }
 
 .close-button {
