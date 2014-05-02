@@ -4,8 +4,8 @@ $(document).ready(function(){
 			window.location = "?code=REDDIT";
     	mixpanel.track("Entered REDDIT Code");
 		} else if ($('#promo-code').val()=="THANKYOU") {
-			window.location = "?code=THANKYOU";
-			mixpanel.track("Entered THANKYOU Code");
+			window.location = "?code=MAY14";
+			mixpanel.track("Entered MAY14 Code");
 		} else {
 			alert("Please enter a valid promo code");
 			mixpanel.track("Entered Incorrect Code");

@@ -18,9 +18,9 @@ class CartsController < ApplicationController
     if @code == "REDDIT"
       @discount = 0.75
       @discount_tag = "REDDIT discount applied (25% off!)"
-    elsif @code == "THANKYOU"
+    elsif @code == "MAY14"
       @discount = 0.75
-      @discount_tag = "THANKS for the feedback (25% off!)"
+      @discount_tag = "Google Ad Discount (25% off!)"
     else
       puts 'Nil'
       @discount = 1
