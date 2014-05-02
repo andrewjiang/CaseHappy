@@ -574,13 +574,13 @@ $(document).ready(function(){
 	});
 
 	$('#order-checkout').click(function(event){
-
+		mixpanel.track("Clicked checkout");
 		saveOrder('new');
 
 	});
 
 	$('#order-save').click(function(event){
-
+		mixpanel.track("Clicked save");
 		saveOrder('save');
 
 	});
@@ -1004,6 +1004,7 @@ function setPrice(value) {
 
 function saveOrder(submit){
     // Disallow saving if images are still uploading
+
     if (casehappy.numberOfUploads > 0) {
         return;
     }
