@@ -1,8 +1,12 @@
+casehappy = window.casehappy || {};
+
 // TODO: Andrew, i think you should read up on object oriented programming when you find the time. This file is insane ;)
 $(document).ready(function(){
 
   // A reference to the last selected object in the canvas
   var lastSelectedObject = null;
+
+  casehappy.numberOfUploads = 0;
 
   // start listener for image upload click
 	document.getElementById('image-input').addEventListener('change', newUpload, false);
@@ -87,7 +91,6 @@ $(document).ready(function(){
     		$('#outside-edge').css('border-color', color);
 			}
 
-			
 	});
 
   // Adding clipart on clicks
@@ -175,21 +178,21 @@ $(document).ready(function(){
 	  	$('#move-up-icon').addClass("hidden");
 	  	$('#move-down-icon').addClass("hidden");
 	  };
-	  
+
 	  moveButtons();
 
 	});
 
 	// Events triggered on object rotation
 	canvas.on('object:rotating', function(options) {
-	  
+
 	  moveButtons();
 
 	});
 
 	// Events triggered on object modification
 	canvas.on('object:modified', function(options) {
-	  
+
 	  moveButtons();
 
 	});
@@ -236,7 +239,7 @@ $(document).ready(function(){
 	  originY: "top",
 	  originX: "center",
 	  left: containerWidth / 2,
-    top: 20,  
+    top: 20,
 	  fill: 'white',
 	  width: 250,
 	  height: 460,
@@ -315,9 +318,9 @@ $(document).ready(function(){
 
 	//Add text
 	$('#text-icon').click(function(){
-		
+
 		var containerWidth = $('#canvas-container').width();
-		var text = new fabric.Text("", { 
+		var text = new fabric.Text("", {
 			left: containerWidth/2 - canvasOffset,
 			top: 240,
 			fontFamily: "Lato",
@@ -348,7 +351,7 @@ $(document).ready(function(){
 
 	//Align text left
 	$('#align-left').click(function(){
-		var obj = canvas.getActiveObject(); 
+		var obj = canvas.getActiveObject();
 		obj.textAlign = "left";
 		canvas.renderAll();
 		getFontInfo();
@@ -359,7 +362,7 @@ $(document).ready(function(){
 
 	//Align text center
 	$('#align-center').click(function(){
-		var obj = canvas.getActiveObject(); 
+		var obj = canvas.getActiveObject();
 		obj.textAlign = "center";
 		canvas.renderAll();
 		getFontInfo();
@@ -370,7 +373,7 @@ $(document).ready(function(){
 
 	//Align text right
 	$('#align-right').click(function(){
-		var obj = canvas.getActiveObject(); 
+		var obj = canvas.getActiveObject();
 		obj.textAlign = "right";
 		canvas.renderAll();
 		getFontInfo();
@@ -381,7 +384,7 @@ $(document).ready(function(){
 
 	//Select font family
 	$('#font-selector').change(function(){
-		var obj = canvas.getActiveObject(); 
+		var obj = canvas.getActiveObject();
 		$('#font-textarea').css('font-family', $('#font-selector').val());
 		obj.fontFamily = $('#font-selector').val();
 		canvas.renderAll();
@@ -418,7 +421,7 @@ $(document).ready(function(){
 		/*if (this.checked){
 			phoneSides.stroke = phoneBkg.fill;
 			canvas.add(phoneSides);
-			
+
 		} else {
 			canvas.remove(phoneSides);
 		}*/
@@ -561,7 +564,7 @@ $(document).ready(function(){
 		$('#background-box').addClass('hidden');
   });
 
- 	
+
 
 	// Order Options
 
@@ -572,17 +575,13 @@ $(document).ready(function(){
 
 	$('#order-checkout').click(function(event){
 
-		saveOrder()
-
-		$('#submit-new').click();
+		saveOrder('new');
 
 	});
 
 	$('#order-save').click(function(event){
-		
-		saveOrder()
 
-		$('#submit-save').click();
+		saveOrder('save');
 
 	});
 
@@ -594,7 +593,7 @@ $(document).ready(function(){
 		} else{
 			$('#order-quantity').val($('#order_quantity').val());
 		}
-		
+
 	  setPrice($('#order_quantity').val());
 
 		canvas.renderAll();
@@ -605,7 +604,7 @@ $(document).ready(function(){
 		  originY: "top",
 		  originX: "center",
 		  left: containerWidth / 2,
-	    top: 10,  
+	    top: 10,
 		  fill: 'white',
 		  width: 290,
 		  height: 500,
@@ -617,7 +616,7 @@ $(document).ready(function(){
 		  originY: "top",
 		  originX: "center",
 		  left: containerWidth / 2,
-	    top: 0,  
+	    top: 0,
 		  fill: 'rgba(0,0,0,0)',
 		  width: 260,
 		  height: 470,
@@ -629,7 +628,7 @@ $(document).ready(function(){
 		}); */
 
 		canvas.add(phoneBkg);
-		
+
 		canvas.renderAll();
 
 		$('#order_startW').val(oriContWidth);
@@ -640,14 +639,14 @@ $(document).ready(function(){
 });
 
 setTimeout(function(){
-	
+
 	console.log("First attempt");
 	var obj = canvas.item(0);
 	obj.selectable = false;
 
 	if (obj){
 		for (var i=1;i<canvas.getObjects().length;i++)
-			{ 
+			{
 				var obj = canvas.item(i);
 				obj.set({
 					transparentCorners: true,
@@ -686,7 +685,7 @@ setTimeout(function(){
 				});
 
 				oriContWidth = $('#order_startW').val();
-				
+
 				resizeCanvas();
 				canvas.calcOffset();
 				canvas.renderAll();
@@ -709,7 +708,7 @@ setTimeout(function(){
 						});
 
 						oriContWidth = $('#order_startW').val();
-						
+
 						resizeCanvas();
 						canvas.calcOffset();
 						canvas.renderAll();
@@ -740,46 +739,106 @@ setTimeout(function(){
 
 
 function newUpload(evt) {
-	var reader = new FileReader();
-	var containerWidth = $('#canvas-container').width();
-	reader.onload = function(event) { console.log ('loading reader');
-		var imgObj = new Image()
+    var reader = new FileReader();
+    var containerWidth = $('#canvas-container').width();
+    reader.onload = function (event) {
+        console.log('loading reader');
+        var imgObj = new Image();
 
-		imgObj.src = event.target.result;
-		imgObj.onload = function(){
-			// start fabricJS stuff
+        imgObj.src = event.target.result;
+        imgObj.onload = function () {
+            // start fabricJS stuff
 
-			var image = new fabric.Image(imgObj);
-			image.set({
-				originX: 'center',
-				originY: 'center',
-				left: containerWidth/2 - canvasOffset,
-				top: 240,
-				offLeft: 0,
-				offTop: 0,
-				angle: 0,
-    		transparentCorners: true,
-    		hasBorders: false,
-    		lockUniScaling: true,
-    		hasCorners: false,
-    		borderColor: 'rgba(0,0,0,0)',
-  			cornerColor: 'rgba(0,0,0,0)',
-    		cornerSize: 20,
-			});
-			image.set({
-				scaleY: 260 / (image.width),
-    		scaleX: 260/ (image.width),
-			});			
-			canvas.add(image);
-			image.setCoords();
-			canvas.setActiveObject(image);
-		
-		}
-	$("#image-input").val('');
-	}
-	reader.readAsDataURL(evt.target.files[0]);
-	
-};
+            var image = new fabric.Image(imgObj);
+            image.set({
+                originX: 'center',
+                originY: 'center',
+                left: containerWidth / 2 - canvasOffset,
+                top: 240,
+                offLeft: 0,
+                offTop: 0,
+                angle: 0,
+                transparentCorners: true,
+                hasBorders: false,
+                lockUniScaling: true,
+                hasCorners: false,
+                borderColor: 'rgba(0,0,0,0)',
+                cornerColor: 'rgba(0,0,0,0)',
+                cornerSize: 20
+            });
+            image.set({
+                scaleY: 260 / (image.width),
+                scaleX: 260 / (image.width)
+            });
+            canvas.add(image);
+            image.setCoords();
+            canvas.setActiveObject(image);
+
+            // upload dat file in the background
+            uploadFile(this, image);
+        }.bind(this);
+        $("#image-input").val('');
+    }.bind(evt.target.files[0]); // Set context to the file to be uploaded
+    reader.readAsDataURL(evt.target.files[0]);
+}
+
+/**
+ * Upload an image in the background and then replace the Fabric image with the S3 image
+ * @param {File} file the image
+ * @param {fabric.Image} fabricImage
+ */
+function uploadFile(file, fabricImage) {
+    uploadStarted();
+    // Send as form data... because you can't XHR multipart data directly
+    formData = new FormData();
+    formData.append('image[payload]', file);
+    $.ajax({
+        type: 'POST',
+        url: '/images',
+        data: formData,
+        processData: false,
+        contentType: false
+    }).done(fileUploaded.bind(fabricImage)).fail(function () {
+        /*
+         TODO: show some sort of notification... maybe retry... we really don't want to let people save raw image data
+         */
+        uploadCompleted();
+    });
+}
+
+/**
+ * Callback when an image has been uploaded. Replaces the fabricJS image on the canvas with the shiny new uploaded image
+ * @param {Object} urls object containing urls to original size and thumbnail images
+ * @this fabric.Image a reference to the fabricJS image element to replace
+ */
+function fileUploaded(urls) {
+    if (urls.error) {
+        // TODO: show some sort of notification
+        console.error(urls.error);
+        return;
+    }
+
+    var image = new Image();
+    image.crossOrigin = 'anonymous';
+    image.onload = function () {
+        this.setElement(image);
+    }.bind(this);
+    image.src = urls.url;
+
+    uploadCompleted();
+}
+
+function uploadStarted() {
+    casehappy.numberOfUploads++;
+    $('.order-btn').addClass('disabled');
+}
+
+function uploadCompleted() {
+    if (--casehappy.numberOfUploads <= 0) {
+        $('.order-btn').removeClass('disabled');
+    }
+}
+
 function moveButtons(){
 	var obj = canvas.getActiveObject();
 	var	rX = (obj.currentWidth / 2);
@@ -872,7 +931,7 @@ function getFontInfo(){
 	document.getElementById('color-selector').color.fromString(hexcolor);*/
 
 	$('#font-selector').val(family);
-	
+
 	switch(align)
 	{
 		case "left":
@@ -943,7 +1002,12 @@ function setPrice(value) {
 	$('#order_quantity').val(value);
 };
 
-function saveOrder(){
+function saveOrder(submit){
+    // Disallow saving if images are still uploading
+    if (casehappy.numberOfUploads > 0) {
+        return;
+    }
+
 	var containerWidth = $('#canvas-container').width();
 
 	$('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
@@ -954,19 +1018,25 @@ function saveOrder(){
       var scaleY = objects[i].scaleY;
       var left = objects[i].left;
       var top = objects[i].top;
-      
+
       var tempScaleX = scaleX * 2;
       var tempScaleY = scaleY * 2;
       var tempLeft = left * 2;
       var tempTop = top * 2;
-      
+
       objects[i].scaleX = tempScaleX;
       objects[i].scaleY = tempScaleY;
       objects[i].left = tempLeft;
       objects[i].top = tempTop;
-      
+
       objects[i].setCoords();
   }
 	$('#order_big_image').val(canvas.toDataURL({ left:  containerWidth - canvasOffset*2 - 290, top: 20, width: 580, height: 1000 }));
 	$('#order_startW').val(oriContWidth);
+
+    if (submit === 'new') {
+        $('#submit-new').click();
+    } else if (submit === 'save') {
+        $('#submit-save').click();
+    }
 }
