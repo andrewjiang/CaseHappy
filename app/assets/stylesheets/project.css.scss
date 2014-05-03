@@ -2040,3 +2040,10 @@ ul.nav {
 #social-icons a:hover {
   opacity: 1;
 }
+
+.selectpicker{
+  z-index: 1000;
+}
+.sp-container{
+  z-index: 999 !important;
+}

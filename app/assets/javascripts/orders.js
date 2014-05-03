@@ -40,6 +40,8 @@ $(document).ready(function(){
   }
 	canvas.setWidth(2000);
 
+	$('select').selectpicker();
+
 	// Initializing color pickers
 	$("#colorpicker").spectrum({
 
@@ -427,6 +429,12 @@ $(document).ready(function(){
 		}*/
 		
 	});
+
+	$('.selectpicker').click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      $('.selectpicker').click();
+  });
 
 	// Object mpve to front / back options
 	$('#move-up-icon').click(function(){
