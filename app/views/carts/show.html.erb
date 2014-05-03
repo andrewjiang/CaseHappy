@@ -21,7 +21,7 @@
           <% @orders.each do |order| %>
             <tr>
             	<td><%= link_to edit_order_path(order) do %>
-            		<div style="height:240px; width: 120px; overflow: hidden;"><iframe style="height:1400px; width:900px; zoom: 0.5; -webkit-transform:scale(0.5); margin-top:-370px; margin-left: -300px;" src="/orders/<%= order.id %>"></iframe></div>
+            		<div style="height:240px; width: 120px; overflow: hidden;"><iframe style="height:1400px; width:900px; zoom: 0.5; -webkit-transform:scale(0.5); margin-top:-460px; margin-left: -350px;" src="/orders/<%= order.id %>"></iframe></div>
             		<% end %></td>
             	<td><%= order.model %></td>
             	<td><%= order.quantity %></td>
