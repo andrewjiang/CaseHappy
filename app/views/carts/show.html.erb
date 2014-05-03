@@ -54,7 +54,7 @@
 	    src="https://checkout.stripe.com/checkout.js"
 	    class="stripe-button"
 	    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-	    data-image="/images/instacase_small.png"
+	    data-image="/images/casehappy_logo.png"
 	    data-name="Order of <%= @cart_items %> Custom Case(s)"
 	    data-description='Total <%= number_to_currency(@cart_total * @discount, options = {format: "%u%n", precision: 2}) %>'
 	    data-amount="<%= @cart_total * @discount * 100 %>"
