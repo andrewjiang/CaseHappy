@@ -40,7 +40,7 @@ $(document).ready(function(){
   }
 	canvas.setWidth(2000);
 
-	$('select').selectpicker();
+	$('#font-selector').selectpicker();
 
 	// Initializing color pickers
 	$("#colorpicker").spectrum({
@@ -405,7 +405,7 @@ $(document).ready(function(){
 
 	//Open background color menu
 	$('#background-icon').click(function(){
-		hideNotes();
+	hideNotes();
 		$('#font-box').addClass('hidden');
 		$('#image-box').addClass('hidden');
 		$('#clipart-box').addClass('hidden');
@@ -432,12 +432,6 @@ $(document).ready(function(){
 		}*/
 		
 	});
-
-	$('.selectpicker').click(function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      $('.selectpicker').click();
-  });
 
 	// Object mpve to front / back options
 	$('#move-up-icon').click(function(){
