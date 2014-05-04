@@ -3,8 +3,8 @@
 </script>
 <div class="container" id="checkout-page">
 	<h2 style="font-family:'Oswald'">SHOPPING CART</h2>
-	<div class="well">
-		<div class="table-responsive">
+	<div class="well" style="background-color:rgb(215,215,215)">
+		<div class="table-responsive" style="font-size:18px;">
       <table class="table">
         <thead>
           <tr>
@@ -20,14 +20,14 @@
         <tbody>
           <% @orders.each do |order| %>
             <tr>
-            	<td><%= link_to edit_order_path(order) do %>
+            	<td style="font-size:18px;"><%= link_to edit_order_path(order) do %>
             		<div style="height:240px; width: 120px; overflow: hidden;"><iframe style="height:1400px; width:900px; zoom: 0.5; -webkit-transform:scale(0.5); margin-top:-460px; margin-left: -350px;" src="/orders/<%= order.id %>"></iframe></div>
             		<% end %></td>
-            	<td><%= order.model %></td>
-            	<td><%= order.quantity %></td>
-            	<td><%= number_to_currency(order.price, options = {format: "%u%n", precision: 0}) %></td>
-            	<td><%= number_to_currency(order.quantity * order.price, options = {format: "%u%n", precision: 0})  %></td>
-            	<td>
+            	<td style="font-size:18px;"><%= order.model %></td>
+            	<td style="font-size:18px;"><%= order.quantity %></td>
+            	<td style="font-size:18px;"><%= number_to_currency(order.price, options = {format: "%u%n", precision: 0}) %></td>
+            	<td style="font-size:18px;"><%= number_to_currency(order.quantity * order.price, options = {format: "%u%n", precision: 0})  %></td>
+            	<td style="font-size:18px;">
             		<%= link_to edit_order_path(order) do %>
             			<span class="glyphicon glyphicon-pencil" style="margin-right: 10px;"></span>
             		<% end %>

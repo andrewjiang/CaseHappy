@@ -625,9 +625,9 @@ a:hover {
   left: 50%;
   margin-left: -145px;
   pointer-events: none;
-  box-shadow: 0px 0px 0px 10000px rgba(235, 235, 235, 0.8) !important;
-  -moz-box-shadow: 0px 0px 0px 10000px rgba(235, 235, 235, 0.8) !important;
-  -webkit-box-shadow: 0px 0px 0px 10000px rgba(235, 235, 235, 0.8) !important;
+  box-shadow: 0px 0px 0px 10000px rgba(205, 205, 205, 0.8) !important;
+  -moz-box-shadow: 0px 0px 0px 10000px rgba(205, 205, 205, 0.8) !important;
+  -webkit-box-shadow: 0px 0px 0px 10000px rgba(205, 205, 205, 0.8) !important;
 }
 
 #inside-border {
@@ -640,9 +640,6 @@ a:hover {
   left: 50%;
   margin-left: -105px;
   pointer-events: none;
-  -moz-box-shadow: 0px 0px 0px 10000px rgba(50, 50, 50, 0.2) !important;
-  -webkit-box-shadow: 0px 0px 0px 10000px rgba(50, 50, 50, 0.2) !important;
-  box-shadow: 0px 0px 0px 10000px rgba(50, 50, 50, 0.2) !important;
 }
 
 #camera-border {
@@ -1546,7 +1543,7 @@ ul.nav {
   overflow: hidden;
   width: 100%;
   height: 100%;
-  background: rgb(202, 202, 202);
+  background: rgb(215, 215, 215);
   font-size: 100%;
 }
 .scene, .shape, .face, .face-wrapper, .cr {
@@ -1837,7 +1834,7 @@ ul.nav {
   height:2.5em;
 }
 .cub-2 .face {
-  background-color: rgb(202, 202, 202);
+  background-color: rgb(200, 200, 200);
   border: 2px solid #777;
 }
 .cub-2 .ft {
@@ -1970,7 +1967,7 @@ ul.nav {
   height:1.2em;
 }
 .cub-3 .face {
-  background-color:rgb(202, 202, 202);
+  background-color: rgb(200, 200, 200);
   border: 2px solid #777;
 }
 .cub-3 .ft {
@@ -2103,7 +2100,7 @@ ul.nav {
   height:1.2em;
 }
 .cub-4 .face {
-  background-color: rgb(202, 202, 202);;
+  background-color: rgb(200, 200, 200);
   border: 2px solid #777;
 }
 .cub-4 .ft {

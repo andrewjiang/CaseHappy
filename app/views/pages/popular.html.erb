@@ -8,12 +8,12 @@
 		  <li class="<%= @editor %>"><a href="/popular?by=editor"><h3 class="thin-font popular-pills">Editor's Picks</h3></a></li>
 		</ul>
 	</div>
-	<div class="container-fluid" style="background-color:rgb(202, 202, 202);">
+	<div class="container-fluid" style="background-color:rgb(215, 215, 215);">
 		<div class="row" style="padding:10px;">
 			<% @orders.each do |order| %>
 				<div class="col-md-3" style="position:relative;">
 			
-					<div class="popular-display"><iframe style="background-color:rgb(202, 202, 202); height:600px; width:100%; margin-top:-40px; margin-left: 0px; border:none;" src="/orders/<%= order.id %>"></iframe>
+					<div class="popular-display"><iframe style="background-color:rgb(215, 215, 215); height:600px; width:100%; margin-top:-40px; margin-left: 0px; border:none;" src="/orders/<%= order.id %>"></iframe>
 					</div>
 					<div class="action-buttons" style="position:absolute; top:25px; right:20px;">
 						<button class="action-button love">
