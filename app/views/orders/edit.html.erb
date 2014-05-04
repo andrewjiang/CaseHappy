@@ -22,7 +22,7 @@
 			<div id="control-box">
 				<button class="control-icon" id="upload-icon">
 					<span class="glyphicon glyphicon-upload"></span>
-					<div class="hidden-on-mobile control-label">Upload Image</div>
+					<div class="hidden-on-mobile control-label">Add Image</div>
 				</button>
 				<button class="control-icon" id="text-icon">
 					<span class="glyphicon glyphicon-font"></span>
@@ -41,6 +41,7 @@
 					<div class="hidden-on-mobile control-label">Save + Preview</div>
 				</button>
 			</div>
+			<div style="height:240px; width: 400px; overflow: hidden; position:absolute; top:320px; left:10px; border: none;"><iframe style="border: none; height:1400px; width:100%; zoom: 0.5; -webkit-transform:scale(0.5); margin-top:-460px; margin-left: -200px;" src="/orders/<%= @order.id %>"></iframe></div>
 
 			<div class="hidden" id="options-box">
 				<button class="object-icon" id="text-remove-icon">

@@ -132,7 +132,8 @@ a:hover {
 
 /* Interesting Utilities */
 .thin-font {
-  font-weight: 200;
+  font-weight: 300;
+  font-family: 'Lato';
 }
 
 .thin-padding {
@@ -141,7 +142,7 @@ a:hover {
 }
 
 .large-button {
-  font-size: 24px;
+  font-size: 28px;
   padding: 10px;
   margin-bottom: 10px;
   font-weight: 500;
@@ -266,8 +267,9 @@ a:hover {
 }
 
 .select-model img {
-  height: 140px;
+  max-height: 300px;
   display: inline;
+  max-width: 100%;
 }
 
 .select-model {
@@ -1544,7 +1546,7 @@ ul.nav {
   overflow: hidden;
   width: 100%;
   height: 100%;
-  background:whitesmoke;
+  background: rgb(202, 202, 202);
   font-size: 100%;
 }
 .scene, .shape, .face, .face-wrapper, .cr {
@@ -1835,7 +1837,7 @@ ul.nav {
   height:2.5em;
 }
 .cub-2 .face {
-  background-color:whitesmoke;
+  background-color: rgb(202, 202, 202);
   border: 2px solid #777;
 }
 .cub-2 .ft {
@@ -1968,7 +1970,7 @@ ul.nav {
   height:1.2em;
 }
 .cub-3 .face {
-  background-color:whitesmoke;
+  background-color:rgb(202, 202, 202);
   border: 2px solid #777;
 }
 .cub-3 .ft {
@@ -2101,7 +2103,7 @@ ul.nav {
   height:1.2em;
 }
 .cub-4 .face {
-  background-color: whitesmoke;
+  background-color: rgb(202, 202, 202);;
   border: 2px solid #777;
 }
 .cub-4 .ft {

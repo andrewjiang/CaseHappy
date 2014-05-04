@@ -310,6 +310,7 @@ $(document).ready(function(){
 
 	//Upload a new image
 	$('#upload-icon').click(function(){
+		hideNotes();
 		$('#image-input').click();
 	});
 
@@ -320,7 +321,7 @@ $(document).ready(function(){
 
 	//Add text
 	$('#text-icon').click(function(){
-
+		hideNotes();
 		var containerWidth = $('#canvas-container').width();
 		var text = new fabric.Text("", {
 			left: containerWidth/2 - canvasOffset,
@@ -395,6 +396,7 @@ $(document).ready(function(){
 
 	//Open clipart menu
 	$('#clipart-icon').click(function(){
+		hideNotes();
 		$('#font-box').addClass('hidden');
 		$('#image-box').addClass('hidden');
 		$('#clipart-box').removeClass('hidden');
@@ -403,6 +405,7 @@ $(document).ready(function(){
 
 	//Open background color menu
 	$('#background-icon').click(function(){
+		hideNotes();
 		$('#font-box').addClass('hidden');
 		$('#image-box').addClass('hidden');
 		$('#clipart-box').addClass('hidden');
@@ -638,6 +641,9 @@ $(document).ready(function(){
 		canvas.add(phoneBkg);
 
 		canvas.renderAll();
+
+		$('#add-image-note').hide();
+		$('#add-image-note').fadeIn("very slow");
 
 		$('#order_startW').val(oriContWidth);
 	};
@@ -1009,6 +1015,11 @@ function setPrice(value) {
 	$('#order-value').html(total);
 	$('#order_quantity').val(value);
 };
+
+//hide instructions
+function hideNotes(){
+	$('#add-image-note').hide();
+}
 
 function saveOrder(submit){
     // Disallow saving if images are still uploading
