@@ -1072,7 +1072,7 @@ function saveOrder(submit){
 
     // Send as form data... because you can't XHR multipart data directly
     var formData = new FormData();
-    formData.append('design[renders]', dataURItoBlob(canvasImage));
+    formData.append('design[renders]', dataURItoBlob(canvasImage), 'case.png');
     $.ajax({
         type: 'POST',
         url: '/designs',
