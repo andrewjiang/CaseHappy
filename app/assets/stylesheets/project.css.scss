@@ -776,6 +776,22 @@ a:hover {
   opacity: 0.4;
 }
 
+.submitting {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  background: rgba(100, 100, 100, 0.8);
+  font-family: 'Helvetic Neue', Arial, sans-serif;
+  padding: 40% 0;
+  z-index: 9999;
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+}
+
 #order-checkout.disabled:hover {
   color: #fff !important;
 }
