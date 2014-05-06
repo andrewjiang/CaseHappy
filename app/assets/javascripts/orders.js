@@ -798,7 +798,7 @@ function newUpload(evt) {
 function uploadFile(file, fabricImage) {
     uploadStarted();
     // Send as form data... because you can't XHR multipart data directly
-    formData = new FormData();
+    var formData = new FormData();
     formData.append('image[payload]', file);
     $.ajax({
         type: 'POST',
@@ -1015,38 +1015,86 @@ function hideNotes(){
 	$('#add-image-note').hide();
 }
 
+/**
+ * Convert an image data URI into a Blob that can be used with FormData for uploading
+ * http://stackoverflow.com/a/15754051/972001
+ * @param dataURI
+ * @returns {Blob}
+ */
+function dataURItoBlob(dataURI) {
+    var byteString = atob(dataURI.split(',')[1]);
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: 'image/jpeg' });
+}
+
 function saveOrder(submit){
     // Disallow saving if images are still uploading
-
     if (casehappy.numberOfUploads > 0) {
         return;
     }
 
-	var containerWidth = $('#canvas-container').width();
+    // Store canvas settings
+    $('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
+    $('#order_startW').val(oriContWidth);
 
-	$('#order_canvas').val(JSON.stringify(canvas.toDatalessJSON()));
-	$('#order_image').val(canvas.toDataURL({ left:  containerWidth / 2 - canvasOffset - 145, top: 10, width: 290, height: 500 }));
-	var objects = canvas.getObjects();
-  for (var i in objects) {
-      var scaleX = objects[i].scaleX;
-      var scaleY = objects[i].scaleY;
-      var left = objects[i].left;
-      var top = objects[i].top;
+    // Scale the canvas up for high-dpi printing
+    var objects = canvas.getObjects();
+    for (var i in objects) {
+        var scaleX = objects[i].scaleX;
+        var scaleY = objects[i].scaleY;
+        var left = objects[i].left;
+        var top = objects[i].top;
 
-      var tempScaleX = scaleX * 2;
-      var tempScaleY = scaleY * 2;
-      var tempLeft = left * 2;
-      var tempTop = top * 2;
+        var tempScaleX = scaleX * 2;
+        var tempScaleY = scaleY * 2;
+        var tempLeft = left * 2;
+        var tempTop = top * 2;
 
-      objects[i].scaleX = tempScaleX;
-      objects[i].scaleY = tempScaleY;
-      objects[i].left = tempLeft;
-      objects[i].top = tempTop;
+        objects[i].scaleX = tempScaleX;
+        objects[i].scaleY = tempScaleY;
+        objects[i].left = tempLeft;
+        objects[i].top = tempTop;
 
-      objects[i].setCoords();
-  }
-	$('#order_big_image').val(canvas.toDataURL({ left:  containerWidth - canvasOffset*2 - 290, top: 20, width: 580, height: 1000 }));
-	$('#order_startW').val(oriContWidth);
+        objects[i].setCoords();
+    }
+
+    // Save the render
+    var containerWidth = $('#canvas-container').width();
+    var canvasImage = canvas.toDataURL({ left:  containerWidth - canvasOffset*2 - 290, top: 20, width: 580, height: 1000 });
+
+    // Create a loading screen
+    var createText = submit === 'new' ? 'Creating your order...' : 'Saving your design...'
+    $('<div class="submitting">' + createText + '</div>').appendTo($('body'));
+
+    // Send as form data... because you can't XHR multipart data directly
+    var formData = new FormData();
+    formData.append('design[renders]', dataURItoBlob(canvasImage));
+    $.ajax({
+        type: 'POST',
+        url: '/designs',
+        data: formData,
+        processData: false,
+        contentType: false
+    }).done(_submitOrder.bind(this, submit)).fail(function () {
+        /*
+         TODO: show some sort of notification... maybe retry... we really don't want to let people save raw image data
+         */
+    });
+}
+
+function _submitOrder(submit, urls) {
+    if (urls.error) {
+        // TODO: show some sort of notification
+        console.error(urls.error);
+        return;
+    }
+
+    $('#order_big_image').val(urls.url);
+    $('#order_image').val(urls.medium_url);
 
     if (submit === 'new') {
         $('#submit-new').click();

@@ -1,11 +1,10 @@
 Casehappy::Application.routes.draw do
-  resources :images
-
-  resources :charges
-  
-  resources :carts
-
   devise_for :users
+
+  resources :images
+  resources :designs
+  resources :charges
+  resources :carts
   resources :orders
 
   root to: "pages#home"
