@@ -637,7 +637,7 @@ $(document).ready(function(){
 		canvas.renderAll();
 
 		$('#add-image-note').hide();
-		$('#add-image-note').fadeIn("very slow");
+		$('#add-image-note').delay(500).fadeIn(200);
 
 		$('#order_startW').val(oriContWidth);
 	};

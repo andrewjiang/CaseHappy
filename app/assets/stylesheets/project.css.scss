@@ -630,7 +630,7 @@ a:hover {
 #outside-border {
   width: 290px;
   height: 500px;
-  border: 1px dotted #2c3e50;
+  border: 1px solid #f39c12;
   border-radius: 60px;
   position: absolute;
   top: 10px;
@@ -666,7 +666,58 @@ a:hover {
   pointer-events: none;
   background-color: rgba(235, 235, 235, 0.9)
 }
-
+#volume-border {
+  width: 20px;
+  height: 68px;
+  border: 1px solid #f39c12;
+  border-radius: 15px;
+  position: absolute;
+  top: 138px;
+  left: 50%;
+  margin-left: 115px;
+  pointer-events: none;
+  background-color: rgba(235, 235, 235, 0.9)
+}
+#vibrate-border {
+  width: 20px;
+  height: 34px;
+  border: 1px solid #f39c12;
+  border-radius: 15px;
+  position: absolute;
+  top: 98px;
+  left: 50%;
+  margin-left: 115px;
+  pointer-events: none;
+  background-color: rgba(235, 235, 235, 0.9)
+}
+#top-box {
+  width: 180px;
+  height: 35px;
+  border: 1px solid #f39c12;
+  border-top: transparent;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  margin-left: -90px;
+  pointer-events: none;
+  background-color: rgba(215, 215, 215, 1)
+}
+#bottom-box {
+  width: 180px;
+  height: 35px;
+  border: 1px solid #f39c12;
+  border-bottom: transparent;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  position: absolute;
+  top: 475px;
+  left: 50%;
+  margin-left: -90px;
+  pointer-events: none;
+  background-color: rgba(215, 215, 215, 1)
+}
 #outside-edge {
   width: 290px;
   height: 500px;
@@ -681,17 +732,23 @@ a:hover {
 
 #outside-instructions{
   position: absolute;
-  top: 510px;
+  top: 474px;
   left: 50%;
-  margin-left: -68px;
+  margin-left: -50px;
+  color: #e67e22;
+  width: 100px;
+  text-align: center;
 }
 
 #inside-instructions{
   position: absolute;
-  top: 470px;
+  top: 450px;
   left: 50%;
-  margin-left: -34px;
+  margin-left: -50px;
   font-weight: 500;
+  color: #2c3e50;
+  width: 100px;
+  text-align: center;
 }
 
 .close-button {
