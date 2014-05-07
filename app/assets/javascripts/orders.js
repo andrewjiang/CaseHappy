@@ -2,6 +2,10 @@ casehappy = window.casehappy || {};
 
 // TODO: Andrew, i think you should read up on object oriented programming when you find the time. This file is insane ;)
 $(document).ready(function(){
+    // Only load if we're creating a design
+    if (location.pathname.search('orders/') === -1) {
+        return;
+    }
 
   // A reference to the last selected object in the canvas
   var lastSelectedObject = null;
@@ -647,6 +651,10 @@ $(document).ready(function(){
 });
 
 setTimeout(function(){
+    // Only load if we're creating a design
+    if (location.pathname.search('orders/') === -1) {
+        return;
+    }
 
 	console.log("First attempt");
 	var obj = canvas.item(0);
