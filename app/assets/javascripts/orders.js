@@ -2,8 +2,8 @@ casehappy = window.casehappy || {};
 
 // TODO: Andrew, i think you should read up on object oriented programming when you find the time. This file is insane ;)
 $(document).ready(function(){
-    // Only load if we're creating a design
-    if (location.pathname.search('orders/') === -1) {
+    // Only load if we're creating a design and this is not in an iframe
+    if (location.pathname.search('orders/') === -1 || inIframe()) {
         return;
     }
 
@@ -646,113 +646,27 @@ $(document).ready(function(){
 		$('#order_startW').val(oriContWidth);
 	};
 
+        for (var i=1;i<canvas.getObjects().length;i++)
+        {
+            var obj = canvas.item(i);
+            obj.set({
+                transparentCorners: true,
+                hasBorders: false,
+                lockUniScaling: true,
+                hasCorners: false,
+                borderColor: 'rgba(0,0,0,0)',
+                cornerColor: 'rgba(0,0,0,0)',
+                cornerSize: 20
+            });
+        }
+
+        oriContWidth = $('#order_startW').val();
+
+        resizeCanvas();
+        canvas.calcOffset();
 	canvas.renderAll();
 
 });
-
-setTimeout(function(){
-    // Only load if we're creating a design
-    if (location.pathname.search('orders/') === -1) {
-        return;
-    }
-
-	console.log("First attempt");
-	var obj = canvas.item(0);
-	obj.selectable = false;
-
-	if (obj){
-		for (var i=1;i<canvas.getObjects().length;i++)
-			{
-				var obj = canvas.item(i);
-				obj.set({
-					transparentCorners: true,
-				  hasBorders: false,
-					lockUniScaling: true,
-					hasCorners: false,
-					borderColor: 'rgba(0,0,0,0)',
-					cornerColor: 'rgba(0,0,0,0)',
-					cornerSize: 20,
-				});
-			}
-
-		oriContWidth = $('#order_startW').val();
-
-		resizeCanvas();
-		canvas.calcOffset();
-		canvas.renderAll();
-
-
-	} else {
-		setTimeout(function(){
-			console.log("Second attempt")
-			var obj = canvas.item(0);
-			obj.selectable = false;
-
-			if (obj){
-				var obj = canvas.item(1);
-				obj.set({
-					transparentCorners: true,
-				  hasBorders: false,
-					lockUniScaling: true,
-					hasCorners: false,
-					borderColor: 'rgba(0,0,0,0)',
-					cornerColor: 'rgba(0,0,0,0)',
-					cornerSize: 20,
-				});
-
-				oriContWidth = $('#order_startW').val();
-
-				resizeCanvas();
-				canvas.calcOffset();
-				canvas.renderAll();
-			} else {
-				setTimeout(function(){
-					console.log("Third attempt")
-					var obj = canvas.item(0);
-					obj.selectable = false;
-
-					if (obj){
-						var obj = canvas.item(1);
-						obj.set({
-							transparentCorners: true,
-						  hasBorders: false,
-							lockUniScaling: true,
-							hasCorners: false,
-							borderColor: 'rgba(0,0,0,0)',
-							cornerColor: 'rgba(0,0,0,0)',
-							cornerSize: 20,
-						});
-
-						oriContWidth = $('#order_startW').val();
-
-						resizeCanvas();
-						canvas.calcOffset();
-						canvas.renderAll();
-					} else {
-						console.log("Something is wrong");
-					}
-				}, 1000);
-			}
-		}, 1000);
-	}
-}, 500);
-
-/*
-
-	'click #copy-icon': function(event){
-		var obj = canvas.getActiveObject();
-		var clone = obj.clone();
-		canvas.add(clone);
-		clone.set({
-			top: obj.top + 5,
-			left: obj.left + 5,
-		})
-		canvas.renderAll();
-	},
-
-*/
-
-
 
 function newUpload(evt) {
     var reader = new FileReader();
@@ -1108,5 +1022,13 @@ function _submitOrder(submit, urls) {
         $('#submit-new').click();
     } else if (submit === 'save') {
         $('#submit-save').click();
+    }
+}
+
+function inIframe() {
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return true;
     }
 }
